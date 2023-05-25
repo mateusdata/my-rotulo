@@ -1,0 +1,41 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App {
+  text-align: center;
+  background-color: #aeceab;
+  min-height: 100vh;
+  
+}
+.main{
+  /*border: solid red 1px;*/
+  
+  padding: 2rem;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.aliementos {
+  
+  padding: 2rem;
+  text-align: left;
+  border-radius: 10px;
+  background-color: #a5c9a3;
+  margin-bottom: 0.6rem;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.aliementos:hover{
+  background-color: #92c28f ;
+}
+.liAliemntos{
+  font-weight:400;
+  font-size: x-large;
+}
+.App-link {
+  color: #61dafb;
+}
+
