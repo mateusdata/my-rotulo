@@ -13,7 +13,7 @@ function Home() {
   const [erro, setErro] = useState(false);
   const sugestao = (e) => {
     e?.preventDefault();
-    axios.get("http://localhost:3001/seach", {
+    axios.get("https://apirotulo-mateusdata.vercel.app/seach", {
       params: {
         values: values
       }
@@ -28,7 +28,7 @@ function Home() {
     if (values.length > 0) {
       setAlimentos([]);
       e?.preventDefault();
-      axios.get("http://localhost:3001/seachalimentos", {
+      axios.get("https://apirotulo-mateusdata.vercel.app/seachalimentos", {
         params: {
           values: values
         }
