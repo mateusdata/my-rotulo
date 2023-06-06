@@ -14,7 +14,7 @@ function Project() {
   const [loading2, setLoading2] = useState(true);
   useEffect(()=>{
     setLoading2(true)
-    axios.get("https://apirotulo-mateusdata.vercel.app/").then((response)=>{
+    axios.get("https://oqueeissonomeurotulo.vercel.app/").then((response)=>{
       console.log(response);
       setAlimentos(response?.data);
       setLoading(false)
