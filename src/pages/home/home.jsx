@@ -5,6 +5,7 @@ import Loading from '../../components/loading/loading';
 import FormAddRotulos from '../../components/form add itens/form';
 import Header from '../../components/header/header';
 import PulseLoader from 'react-spinners/PulseLoader';
+import SearchBar from '../../components/seach/seach';
 
 function Home() {
   const [alimentos, setAlimentos] = useState([]);
@@ -48,7 +49,7 @@ function Home() {
   return (
     <>
     <Header/>
-    
+    <SearchBar/>
       <div className="">
 
 
@@ -78,7 +79,7 @@ function Home() {
               </div>
             </div>
           </form>
-
+                
         </form>
 
         {alimentos?.map((item) => (
