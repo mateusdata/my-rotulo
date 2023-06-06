@@ -9,10 +9,17 @@
   min-height: 100vh;
   
 }
+.containeiMain{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align:"center";
+}
 .main{
   /*border: solid red 1px;*/
   
-  padding: 2rem;
+  padding: 0rem;
   margin-top: 4rem;
   display: flex;
   flex-direction: column-reverse;
@@ -24,7 +31,8 @@
   border-radius: 10px;
   background-color: #a5c9a3;
   margin-bottom: 0.6rem;
-  max-width: 100%;
+  max-width: 85%;
+  width: 400px;
   overflow-wrap: break-word;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

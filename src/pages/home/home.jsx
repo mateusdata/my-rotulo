@@ -50,10 +50,10 @@ function Home() {
     <>
     <Header/>
     <SearchBar/>
-      <div className="">
+   <div className="containeiMain">
 
 
-        <form style={{ width: "50%", minWidth: "330px", padding: "2rem 1rem", display: "flex", flexDirection: "column" }}>
+        <form style={{ width: "50%", minWidth: "330px", padding: "2rem 1rem", display: "flex", flexDirection: "column", textAlign:"center" }}>
 
           <form>
             <div class="flex">
@@ -83,9 +83,9 @@ function Home() {
         </form>
 
         {alimentos?.map((item) => (
-         
-            <h1 style={{color:"black", right:"4rem"}} onClick={() => { setValues(item?.NomeDoAlimento); setAlimentos([]); }}>{item?.NomeDoAlimento}</h1>
-         
+          <div style={{ backgroundColor:"white", justifyContent:"center", alignItems:"center",  width:"50%", padding:"10px"}}>
+            <p style={{color:"orange"}} onClick={() => { setValues(item?.NomeDoAlimento); setAlimentos([]); }}>{item?.NomeDoAlimento}</p>
+          </div>
         ))}
 
         <br /><br /><br /><b><br /></b>
