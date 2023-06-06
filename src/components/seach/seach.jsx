@@ -18,7 +18,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div   style={{height:"150px" }}>
+    <div   style={{height:"100px" }}>
       {/*<input
         type="text"
         placeholder="Pesquisar..."

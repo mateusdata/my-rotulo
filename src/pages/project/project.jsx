@@ -21,8 +21,7 @@ function Project() {
       setLoading2(false);
     }).catch((error) => {
       console.error(error);
-      setLoading(false);
-      setLoading2(false);
+     
     });
   },[up])
   const updateList = ( )=>{

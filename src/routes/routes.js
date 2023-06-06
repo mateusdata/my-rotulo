@@ -11,7 +11,7 @@ const Rotas = () => {
   function Private({ children }) {
     const { autenticado, load } = useContext(Contexto);
 
-    if (load) {
+    if (load) { //se tirar esse loading ele redireciona pra /login mesmo se estiver logado
       return <div style={{display:"flex", color: "blue", justifyContent:"center",alignItems:"center", height:"100vh" }} className="loading">
           <HashLoader color="#36d7b7"  size={100}/>
          </div>

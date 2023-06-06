@@ -17,7 +17,7 @@ const FormAddRotulos = (props) => {
           const currentDate = new Date();
           const DataDeAdicao = formatDateToBR(currentDate);
           //alert(NomeDoAlimento +" " + Rotulo)
-        axios.put("https://apirotulo-mateusdata.vercel.app/add",{
+        axios.put("https://oqueeissonomeurotulo.vercel.app/add",{
             NomeDoAlimento,
             Rotulo,
             DataDeAdicao

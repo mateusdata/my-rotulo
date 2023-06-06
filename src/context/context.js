@@ -36,7 +36,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         autenticado: !!user,
         login,
-        logout
+        logout,
+        load
       }}
     >
       {children}

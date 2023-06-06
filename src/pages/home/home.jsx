@@ -83,9 +83,9 @@ function Home() {
         </form>
 
         {alimentos?.map((item) => (
-          <div style={{left:"1rem", backgroundColor:"white"}}>
-            <p onClick={() => { setValues(item?.NomeDoAlimento); setAlimentos([]); }}>{item?.NomeDoAlimento}</p>
-          </div>
+         
+            <h1 style={{color:"black", right:"4rem"}} onClick={() => { setValues(item?.NomeDoAlimento); setAlimentos([]); }}>{item?.NomeDoAlimento}</h1>
+         
         ))}
 
         <br /><br /><br /><b><br /></b>
