@@ -11,7 +11,7 @@ function Home() {
   const [erro, setErro] = useState(false);
   const sugestao = (e) => {
     e?.preventDefault();
-    axios.get("hhttps://oqueeissonomeurotulo.vercel.app/seach", {
+    axios.get("https://oqueeissonomeurotulo.vercel.app/seach", {
       params: {
         values: values
       }
@@ -26,7 +26,7 @@ function Home() {
     if (values.length > 0) {
       setAlimentos([]);
       e?.preventDefault();
-      axios.get("hhttps://oqueeissonomeurotulo.vercel.app/seachalimentos", {
+      axios.get("https://oqueeissonomeurotulo.vercel.app/seachalimentos", {
         params: {
           values: values
         }
