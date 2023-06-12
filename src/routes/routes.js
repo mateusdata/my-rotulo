@@ -6,12 +6,13 @@ import { AuthProvider, Contexto } from "../context/context";
 import LoginPage from "../pages/login/loginPage";
 import Project from "../pages/project/project";
 import Home from "../pages/home/home";
+import Dashboard from "../components/dashboard/Dashboard";
 
 const Rotas = () => {
   function Private({ children }) {
     const { autenticado, load } = useContext(Contexto);
 
-    if (load) { //se tirar esse loading ele redireciona pra /login mesmo se estiver logado
+   if (load) { //se tirar esse loading ele redireciona pra /login mesmo se estiver logado
       return <div style={{display:"flex", color: "blue", justifyContent:"center",alignItems:"center", height:"100vh" }} className="loading">
           <HashLoader color="#36d7b7"  size={100}/>
          </div>

@@ -17,7 +17,7 @@ export default function Dashboard({children}) {
   useEffect(()=>{
     const {cpf} = user;
    
-    axios.get("http://localhost:3002/seachUser", {
+    axios.get("https://oqueeissonomeurotulo.vercel.app/seachUser", {
      params:{
        cpf
      }
@@ -31,9 +31,9 @@ export default function Dashboard({children}) {
    
 
   const navigation = [
-    { name: nomeUser? 'Cadastro':"Início", href: '/adm', current: true },
-    { name: 'contato', href: '/', current: false },
-    { name: 'Login', href: '/login', current: false },
+    { name: 'Início', href: '/adm', current: true },
+    { name: 'Contato', href: '/', current: false },
+    { name: 'Sair', href: '/', current: false },
   ]
   
   /*const userNavigation = [
@@ -95,10 +95,10 @@ export default function Dashboard({children}) {
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
-                         { nomeUser && <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="sr-only">Open user menu</span>
-                            <p style={{backgroundColor:"orange", padding:"0.5rem",}}>{nomeUser && nomeUser[0]?.toUpperCase()}</p>
-                          </Menu.Button>}
+                            <p style={{backgroundColor:"orange", padding:"0.5rem",}}>{"M"}</p>
+                          </Menu.Button>
                         </div>
                         <Transition
                           as={Fragment}
@@ -214,12 +214,12 @@ export default function Dashboard({children}) {
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="mt-3 text-xl leading-6 text-black-800 font-bold"> Oque é isso no meu Rótulo</h1>
+            <h1 className="mt-3 text-xl leading-6 text-black-800 font-bold"> Cadastro de Ingredientes</h1>
             <hr />
           </div>
         </header>
         <main style={{border:"solid blue 0px", }}>
-          <div style={{backgroundColor:"white", padding:"0rem 1rem",minHeight:"", maxWidth:"100%" }} className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 rounded-2xl h-screen"></div>
+          <div style={{backgroundColor:"white", padding:"0rem 1rem",minHeight:"100vh", maxWidth:"100%" }} className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 rounded-2xl h-screen">{children}</div>
         </main>
       </div>
     </>

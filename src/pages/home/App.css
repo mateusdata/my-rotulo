@@ -24,6 +24,17 @@
   display: flex;
   flex-direction: column-reverse;
 }
+.classhover:hover{
+  background-color: #eaebee;
+  width: 100%;
+
+}
+.classhover:hover{
+  background-color: #eaebee;
+  width: 100%;
+ 
+ 
+}
 .aliementos {
   
   padding: 2rem;
