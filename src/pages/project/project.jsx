@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import Loading from '../../components/loading/loading';
-import FormAddRotulos from '../../components/form add itens/form';
-import Header from '../../components/header/header';
 import PulseLoader from 'react-spinners/PulseLoader';
 import Dashboard from '../../components/dashboard/Dashboard';
 import RegisterProducts from '../../components/dashboard/registerProducts';

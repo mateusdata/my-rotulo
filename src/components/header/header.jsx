@@ -17,7 +17,7 @@ export default function Dashboard({children}) {
   useEffect(()=>{
     const {cpf} = user;
    
-    axios.get("http://localhost:3002/seachUser", {
+    axios.get("https://oqueeissonomeurotulo.vercel.app/seachUser", {
      params:{
        cpf
      }
@@ -202,7 +202,7 @@ export default function Dashboard({children}) {
                     <Disclosure.Button
                       className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
-                      <Link  onClick={()=>logout()}    className='bblock rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white'>Sair afgora</Link>
+                      <Link  onClick={()=>logout()}    className='bblock rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white'>Sair agora</Link>
                     </Disclosure.Button>
                       
                   </div>

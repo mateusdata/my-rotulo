@@ -57,4 +57,15 @@
 .App-link {
   color: #61dafb;
 }
+.main{
+  width: 100%;
+  border: solid red 2px;
+  display: flex;
+  padding: 1rem;
+}
+ul{
+  border-radius: 2px;
+  background-color: #eaebee;
+  width: 40%;
+}
 

@@ -106,9 +106,13 @@ function Home() {
           }
 
           return (
-            <ul className='' key={item.ID}>
-              <h2 style={{ color: "blue" }}>{item?.NomeDoAlimento?.toUpperCase()}</h2>
+            <div className="main">
+              <h2 style={{ color: "blue" }}>{item?.nome_pt?.toUpperCase()}</h2>
               <br />
+              <ul  key={item.ID}>
+                <div>
+
+                </div>
               <li className='liAliemntos'>{"ID do alimento: " + item.id}</li>
               <li className='liAliemntos'>{"Nome em portugues: " + item.nome_pt}</li>
               <li className='liAliemntos'>{"Nome em inlges: " + item.nome_us}</li>
@@ -118,6 +122,7 @@ function Home() {
               <li className='liAliemntos'>{"data_criacao: " + item.data_criacao}</li>
               <li className='liAliemntos'>{"categoria_id: " + catAux}</li>
             </ul>
+            </div>
           )
         })}
 
