@@ -5,10 +5,9 @@ import PulseLoader from 'react-spinners/PulseLoader';
 import Dashboard from '../../components/dashboard/Dashboard';
 import RegisterProducts from '../../components/dashboard/registerProducts';
 
-function Project() {
+function Admin() {
   const [alimentos, setAlimentos] = useState([]);
   const [showItens, setShowItens] = useState(true);
-  const [up, setUp] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
   useEffect(() => {
@@ -22,10 +21,8 @@ function Project() {
       console.error(error);
 
     });
-  }, [up])
-  const updateList = () => {
-    setUp(!up)
-  }
+  }, [])
+  
   if (loading) {
     return (
       <Loading />
@@ -58,4 +55,4 @@ function Project() {
   );
 }
 
-export default Project;
+export default Admin;

@@ -32,7 +32,7 @@ export default function Dashboard({children}) {
 
   const navigation = [
     { name: nomeUser? 'Cadastro':"Início", href: '/adm', current: true },
-    { name: 'contato', href: '/', current: false },
+    { name:  nomeUser? 'Contato': "Adm", href:  nomeUser? '/': "/adm", current: false },
     { name: 'Login', href: '/login', current: false },
   ]
   
@@ -58,7 +58,7 @@ export default function Dashboard({children}) {
                     <div className="flex-shrink-0">
                       <img
                         className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        src="https://png.pngtree.com/png-vector/20190124/ourmid/pngtree-light-bulb-doubt-question-bulb-glowing-bulb-png-image_551052.jpg"
                         alt="Your Company"
                       />
                     </div>
@@ -222,6 +222,7 @@ export default function Dashboard({children}) {
           <div style={{backgroundColor:"white", padding:"0rem 1rem",minHeight:"", maxWidth:"100%" }} className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 rounded-2xl h-screen"></div>
         </main>
       </div>
+    
     </>
   )
 }

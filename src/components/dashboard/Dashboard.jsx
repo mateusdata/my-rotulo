@@ -31,8 +31,8 @@ export default function Dashboard({children}) {
    
 
   const navigation = [
-    { name: 'Início', href: '/adm', current: true },
-    { name: 'Contato', href: '/', current: false },
+    { name: 'Adm', href: '/adm', current: true },
+    { name: 'Status', href: '/status', current: false },
     { name: 'Sair', href: '/', current: false },
   ]
   
@@ -58,7 +58,7 @@ export default function Dashboard({children}) {
                     <div className="flex-shrink-0">
                       <img
                         className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        src="https://png.pngtree.com/png-vector/20190124/ourmid/pngtree-light-bulb-doubt-question-bulb-glowing-bulb-png-image_551052.jpg"
                         alt="Your Company"
                       />
                     </div>
