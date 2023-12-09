@@ -17,7 +17,7 @@ export default function Dashboard({children}) {
   useEffect(()=>{
     const {cpf} = user;
    
-    axios.get("https://oqueeissonomeurotulo.vercel.app/seachUser", {
+    axios.get("https://apinewrotulo-wispy-sunset-1890.fly.dev/seachUser", {
      params:{
        cpf
      }
@@ -25,6 +25,8 @@ export default function Dashboard({children}) {
      console.log(response?.data);
      setNomeUser(response?.data[0]?.nome);
     // alert(user?.cpf + response?.data[0]?.nome ) 
+    }).catch((erro)=>{
+      console.log(erro);
     })
     // eslint-disable-next-line
    },[]);
@@ -64,7 +66,7 @@ export default function Dashboard({children}) {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
+                        {navigation?.map((item) => (
                           <a
                             key={item.name}
                             href={item.href}
