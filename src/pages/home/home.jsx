@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import axios from "axios";
+import axios from '../../axiosConfig';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 
@@ -11,27 +11,24 @@ function Home() {
   const [erro, setErro] = useState(false);
   const sugestao = (e) => {
     e?.preventDefault();
-    axios.get("https://apinewrotulo-wispy-sunset-1890.fly.dev/seach", {
+    axios.get('/seach', {
       params: {
         values: values
       }
     }).then((response) => {
-      console.log(response);
       setAlimentos(response?.data);
     }).catch((error) => {
-      console.error(error);
     });
   }
   const listSeachAlimentos = (e) => {
     if (values.length > 0) {
       setAlimentos([]);
       e?.preventDefault();
-      axios.get("https://apinewrotulo-wispy-sunset-1890.fly.dev/seachalimentos", {
+      axios.get('/seachalimentos', {
         params: {
           values: values
         }
       }).then((response) => {
-        console.log(response);
         setseachAlimentos(response?.data);
         if (response.data.length < 1) {
           setErro(true)
@@ -39,10 +36,10 @@ function Home() {
         }
         setErro(false)
       }).catch((error) => {
-        console.error(error);
       });
     }
   }
+
   return (
 
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', justifyContent: "space-between" }}>

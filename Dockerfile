@@ -1,45 +1,26 @@
-# syntax = docker/dockerfile:1
+# Use an official Node.js runtime as a parent image
+FROM node:20.0
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.10.0
-FROM node:${NODE_VERSION}-slim as base
-
-LABEL fly_launch_runtime="Node.js"
-
-# Node.js app lives here
+# Set the working directory to /app
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
+# Copy package.json and package-lock.json into the working directory
+COPY package*.json ./
 
+# Install any needed packages
+RUN npm install --silent
 
-# Throw-away build stage to reduce size of final image
-FROM base as build
+# Copy the rest of the application into the working directory
+COPY . .
 
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install -y build-essential pkg-config python-is-python3
-
-# Install node modules
-COPY --link package-lock.json package.json ./
-RUN npm ci --include=dev
-
-# Copy application code
-COPY --link . .
-
-# Build application
+# Build the application
 RUN npm run build
 
-# Remove development dependencies
-RUN npm prune --omit=dev
+# Use nginx to serve the application
+FROM nginx:1.22-alpine
 
+COPY --from=0 /app/build /usr/share/nginx/html
+COPY conf.d /etc/nginx/conf.d
 
-# Final stage for app image
-FROM base
-
-# Copy built application
-COPY --from=build /app /app
-
-# Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

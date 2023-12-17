@@ -13,19 +13,19 @@ export default function RegisterProducts() {
 
   const [inputDisable, setInputDisable] = useState(false);
   const [erro, setErro] = useState("");
-  const {nomeUser} = useContext(Contexto);
-  
+  const { nomeUser } = useContext(Contexto);
+
   const cadastrarAlimento = (e) => {
-  
+
     e?.preventDefault();
-    if(selectedValue==="Categoria"){
+    if (selectedValue === "Categoria") {
       setErro("ERRO em");
       return;
     }
     setErro("")
     if (namePt && mainFunction && selectedValue !== "Categoria" && nameUs && nameLatin) {
-      
-    
+
+
       function formatDateToBR(date) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -34,8 +34,8 @@ export default function RegisterProducts() {
       }
       const currentDate = new Date();
       const DataDeAdicao = formatDateToBR(currentDate);
-    
-      axios.put("https://oqueeissonomeurotulo.vercel.app/add", {
+
+      axios.put(`http://localhost:process.env.BACKEND_PORT/add`, {
         namePt,
         nameUs,
         nameLatin,
@@ -44,9 +44,8 @@ export default function RegisterProducts() {
         selectedValue,
         DataDeAdicao,
         nomeUser
-        
+
       }).then((response) => {
-        console.log(response);
         //setAlimentos(response?.data)
         setNamePt("");
         setMainFunction("")
@@ -58,20 +57,13 @@ export default function RegisterProducts() {
       }).catch((error) => {
         console.error(error);
       });
-      
+
       return;
     }
 
-   
+
   }
-  /*const deleteTable = () => {
-    axios.put("https://oqueeissonomeurotulo.vercel.app/delete").then((response) => {
-      console.log(response);
-      //setAlimentos(response?.data)
-    }).catch((error) => {
-      console.error(error);
-    });
-  }*/
+
   return (
     <form >
       <div className="space-y-12 flex items-center justify-center">
@@ -81,7 +73,7 @@ export default function RegisterProducts() {
           <p className="mt-1 text-sm leading-6 text-gray-600">Simplifique o cadastro de rótulos alimentícios.</p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap:"wrap" }}>
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
               <div className="sm:col-span-3">
                 <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
                   Nome em Português
@@ -163,7 +155,7 @@ export default function RegisterProducts() {
                       defaultValue={''}
                     />
                   </div>
-                  
+
                 </div>
 
                 <div className="col-span-full">
@@ -189,8 +181,8 @@ export default function RegisterProducts() {
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="country" className="block text-sm font-medium leading-6  text-gray-900" style={{color: erro?  "red": false}}>
-              {erro && erro} Categoria 
+              <label htmlFor="country" className="block text-sm font-medium leading-6  text-gray-900" style={{ color: erro ? "red" : false }}>
+                {erro && erro} Categoria
               </label>
               <div className="mt-2">
                 <select
@@ -206,7 +198,7 @@ export default function RegisterProducts() {
                   <option>Corporais</option>
                   <option>Saneantes</option>
                 </select>
-                
+
               </div>
 
             </div>
