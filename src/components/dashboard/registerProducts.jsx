@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import { Contexto } from "../../context/context";
 
 export default function RegisterProducts() {
@@ -35,7 +35,7 @@ export default function RegisterProducts() {
       const currentDate = new Date();
       const DataDeAdicao = formatDateToBR(currentDate);
 
-      axios.put(`http://localhost:process.env.BACKEND_PORT/add`, {
+      axios.put('/add', {
         namePt,
         nameUs,
         nameLatin,
