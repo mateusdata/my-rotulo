@@ -9,6 +9,6 @@ const BACKEND_PORT = process.env.BACKEND_PORT;
 
 
 // Set the global base URL for Axios
-axios.defaults.baseURL = `http://localhost:${BACKEND_PORT || 3002}`;
+axios.defaults.baseURL = `/api`;
 
 export default axios;
