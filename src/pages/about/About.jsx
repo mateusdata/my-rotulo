@@ -21,7 +21,7 @@ const About = () => {
       <p className="text-lg text-gray-800 dark:text-gray-200">projeto também busca promover o consumo consciente, capacitando os consumidores a fazer escolhas informadas sobre os produtos que consomem.</p>
 
       <figure>
-        <img className="w-full object-cover rounded-xl" src="https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Image Description"/>
+        <img className="w-full object-cover rounded-xl" src="https://veja.abril.com.br/wp-content/uploads/2016/05/quimica-laboratorio-20133010-original.jpeg?quality=90&strip=info" alt="Image Description"/>
         <figcaption className="mt-3 text-sm text-center text-gray-500">
           Rótulo de alimento
         </figcaption>
@@ -41,9 +41,9 @@ const About = () => {
       </blockquote>
 
       <figure>
-        <img className="w-full object-cover rounded-xl" src="" alt="Image Description"/>
+        <img className="w-full object-cover rounded-xl" src="https://conteudo.imguol.com.br/c/entretenimento/af/2022/06/05/novo-rotulo-com-lupa-1654438067880_v2_900x506.png" alt="Image Description"/>
         <figcaption className="mt-3 text-sm text-center text-gray-500">
-          A man and a woman looking at a cell phone.
+        Rótulos de alimentos
         </figcaption>
       </figure>
 
