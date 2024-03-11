@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Contexto } from '../context/context';
+import { Link } from 'react-router-dom';
 function GlobalLayout({children}) {
   const [showMenu,setShowMenu] = useState(false);
+  const {  currentPage, setCurrentPage} = useContext(Contexto)
   return (
     <>
       <html class="min-h-screen">
-        <body class="bg-slate-50 dark:bg-slate-900 flex min-h-screen w-full">
+        <body class="bg-white dark:bg-slate-900 flex min-h-screen w-full">
           <div class=" w-full 2xl:w-[80rem] flex flex-col mx-auto size-full">
 
-            <header class="mb-2 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-blue-300 z-50 w-full text-sm py-4">
+            <header class="mb-2 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-2">
               <nav class="w-full px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
                 <div class="flex items-center justify-between">
                   <a class="flex-none text-xl font-semibold dark:text-white text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-600 hidden sm:block" href="#" aria-label="Brand">Oque é isso no meu rótulo</a>
@@ -23,11 +26,12 @@ function GlobalLayout({children}) {
                 </div>
                 <div id="navbar-collapse-with-animation" class={`hs-collapse ${showMenu && "hidden"} overflow-hidden transition-all duration-300 basis-full grow sm:block`}>
                   <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-                    <a class="font-medium text-blue-600 sm:py-3 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-current="page">home</a>
-                    <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-3 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">sobre</a>
-                    <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-3 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">dev</a>
-                    <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-3 dark:text-gray-400 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">contato</a>
+                    <Link to={"/"} onClick={()=>setCurrentPage(1)}  class={`font-medium ${currentPage===1 ? "text-blue-600 hover:text-blue-700 ": "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
+                    <Link to={"/sobre"} onClick={()=>setCurrentPage(2)}   class={`font-medium ${currentPage===2 ? "text-blue-600 hover:text-blue-700 ": "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>sobre</Link>
+                    <Link to={"/contato"} onClick={()=>setCurrentPage(3)}   class={`font-medium ${currentPage===3 ? "text-blue-600 hover:text-blue-700 ": "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>contato</Link>
+                    <Link to={"/login"} onClick={()=>setCurrentPage(4)}   class={`font-medium ${currentPage===4 ? "text-blue-600 hover:text-blue-700 ": "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer  `}> | login</Link>
                   </div>
+
                 </div>
               </nav>
             </header>

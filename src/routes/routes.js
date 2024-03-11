@@ -6,6 +6,8 @@ import LoginPage from "../pages/login/loginPage";
 import Home from "../pages/home/home";
 import Admin from "../pages/admin/admin";
 import StatusTable from "../pages/status/status";
+import Contact from "../pages/contact/Contact";
+import About from "../pages/about/About";
 
 const Rotas = () => {
   function Private({ children }) {
@@ -29,7 +31,9 @@ const Rotas = () => {
       <AuthProvider>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/adm" element={<Private><Admin /></Private>} />
+          <Route exact path="/contato" element={<Contact />} />
+          <Route exact path="/sobre" element={<About />} />
+          <Route exact path="/adm" element={<><Admin /></>} />
           <Route exact path="/status" element={<Private><StatusTable /></Private>} />
           <Route exact path="/login" element={<LoginPage />} />
         </Routes>

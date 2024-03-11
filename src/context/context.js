@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [load, setLoad] = useState(true);
   const [nomeUser, setNomeUser] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,7 +51,9 @@ export const AuthProvider = ({ children }) => {
         load,
         user,
         nomeUser,
-        setNomeUser
+        setNomeUser,
+        currentPage, 
+        setCurrentPage
       }}
     >
       {children}
