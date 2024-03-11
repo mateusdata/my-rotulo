@@ -9,10 +9,10 @@ const ContactPage = () => {
     <GlobalLayout>
 
     <div className="mx-auto max-w-lg p-6">
-      <h1>Entre em contato conosco</h1>
+      <h1 className='text-xl'>Entre em contato conosco</h1>
       <Paragraph>
-        Para entrar em contato conosco, envie um email para{' '}
-        <a href="mailto:mateus.sival@example.com">mateus.sival@example.com</a>.
+        <span className='text-lg'>Para entrar em contato conosco, envie um email para {" "}</span>
+        <a className='text-md' href="mailto:mateus.sival@example.com">mateus.sival@example.com</a>.
       </Paragraph>
     </div>
     </GlobalLayout>
