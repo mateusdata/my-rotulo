@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function GlobalLayout({children}) {
   const [showMenu,setShowMenu] = useState(false);
   const {  currentPage, setCurrentPage} = useContext(Contexto)
+  //contexto
   return (
     <>
       <html class="min-h-screen">
