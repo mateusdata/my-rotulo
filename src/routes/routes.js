@@ -8,6 +8,8 @@ import Admin from "../pages/admin/admin";
 import StatusTable from "../pages/status/status";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
+import { Spin } from "antd";
+import SubstanceEditing from "../pages/editing/SubstanceEditing";
 
 const Rotas = () => {
   function Private({ children }) {
@@ -16,7 +18,7 @@ const Rotas = () => {
     if (load) {
       return (
         <div style={{ display: "flex", color: "blue", justifyContent: "center", alignItems: "center", height: "100vh" }} className="loading">
-          <HashLoader color="#36d7b7" size={100} />
+          <Spin color="#36d7b7" size={100} />
         </div>
       );
     }
@@ -33,7 +35,8 @@ const Rotas = () => {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/contato" element={<Contact />} />
           <Route exact path="/sobre" element={<About />} />
-          <Route exact path="/adm" element={<><Admin /></>} />
+          <Route exact path="/adm" element={<Private><Admin /></Private>} />
+          <Route exact path="/edit" element={<Private><SubstanceEditing/></Private>} />
           <Route exact path="/status" element={<Private><StatusTable /></Private>} />
           <Route exact path="/login" element={<LoginPage />} />
         </Routes>

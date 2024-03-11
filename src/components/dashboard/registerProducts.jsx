@@ -2,18 +2,46 @@ import React, { useContext } from "react";
 import axios from '../../axiosConfig';
 import { Contexto } from "../../context/context";
 import { useForm, Controller } from 'react-hook-form';
-import { Input, Button, Select } from 'antd';
+import { Input, Button, Select, message, notification } from 'antd';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 const { TextArea } = Input;
 const { Option } = Select;
 
+const schema = yup.object().shape({
+  namePt: yup.string().matches(/^[A-Za-zÀ-ú\s]+$/, 'Nome em Português inválido').required('Obrigatório'),
+  nameUs: yup.string().matches(/^[A-Za-z\s]+$/, 'Nome em Inglês inválido').required('Obrigatório'),
+  nameLatin: yup.string().matches(/^[A-Za-z\s]+$/, 'Nome em Latim inválido').required('Obrigatório'),
+  origin: yup.string().matches(/^[A-Za-z\s]+$/, 'Origem inválida').required('Obrigatório'),
+  mainFunction: yup.string().matches(/^[A-Za-z\s]+$/, 'Função Principal inválida').required('Obrigatório'),
+  category: yup.number().required('Obrigatório').typeError('Selecione uma categoria')
+});
+
+
 export default function RegisterProducts() {
-  const { control, handleSubmit, setError, formState: { errors } } = useForm();
+  const data = { namePt: "", nameUs: "", nameLatin: "", origin: "", mainFunction: "", category: "selecione" }
+
+  const { control, reset, handleSubmit, setError, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+
+    defaultValues: data,
+    mode: "all"
+  });
   const { nomeUser } = useContext(Contexto);
 
+
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type) => {
+    api[type]({
+      message: 'Substância foi criada com sucesso',
+      description: '',
+    });
+  }
+
   const cadastrarAlimento = (data) => {
-    return console.log(data)
-    if (data.category === "Categoria") {
+    console.log(data);
+    if (!data.category) {
       setError("category", {
         type: "manual",
         message: "Por favor selecione uma categoria!"
@@ -26,11 +54,12 @@ export default function RegisterProducts() {
       DataDeAdicao: formatDateToBR(new Date()),
       nomeUser
     }).then((response) => {
-      // Limpar o formulário após o envio
+    //  openNotificationWithIcon('success')
+//      reset();
     }).catch((error) => {
-      console.error(error);
+      setError("namePt", { message: error?.response?.data?.error });
     });
-  }
+  };
 
   function formatDateToBR(date) {
     const day = String(date.getDate()).padStart(2, '0');
@@ -41,70 +70,90 @@ export default function RegisterProducts() {
 
   return (
     <div className="container mx-auto px-4">
+      {contextHolder}
+
       <h1 className="text-2xl font-bold mb-5">Cadastro de rótulos de alimentos</h1>
       <p className="mb-5">Simplifique o cadastro de rótulos alimentícios.</p>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(cadastrarAlimento)}>
-        <Controller
-          name="namePt"
-          control={control}
-          rules={{ required: 'Por favor insira o nome em Português!' }}
-          render={({ field }) => (
-            <Input {...field} placeholder="Nome em Português" />
-          )}
-        />
+        <div className="w-full flex flex-col gap-5  sm:px-48 ">
+          <div className="flex md:flex-row flex-col gap-2">
+            <div className="w-full  ">
+              <Controller
+                name="namePt"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} placeholder="Nome em Português" />
+                )}
+              />
+              <p className='text-red-600 text-left text-sm'>{errors?.namePt?.message}</p>
+            </div>
 
-        <Controller
-          name="nameUs"
-          control={control}
-          rules={{ required: 'Por favor insira o nome em Inglês!' }}
-          render={({ field }) => (
-            <Input {...field} placeholder="Nome em Inglês" />
-          )}
-        />
+            <div className="w-full ">
+              <Controller
+                name="nameUs"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} placeholder="Nome em Inglês" />
+                )}
+              />
+              <p className='text-red-600 text-left text-sm'>{errors?.nameUs?.message}</p>
+            </div>
+          </div>
 
-        <Controller
-          name="nameLatin"
-          control={control}
-          rules={{ required: 'Por favor insira o nome em Latim!' }}
-          render={({ field }) => (
-            <Input {...field} placeholder="Nome em Latim" />
-          )}
-        />
+          <div className="flex md:flex-row flex-col gap-2">
+            <div className="w-full">
+              <Controller
+                name="nameLatin"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} placeholder="Nome em Latim" />
+                )}
+              />
+              <p className='text-red-600 text-left text-sm'>{errors?.nameLatin?.message}</p>
+            </div>
 
-        <Controller
-          name="mainFunction"
-          control={control}
-          rules={{ required: 'Por favor insira a função principal!' }}
-          render={({ field }) => (
-            <TextArea {...field} placeholder="Função Principal" />
-          )}
-        />
+            <div className="w-full">
+              <Controller
+                name="origin"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} placeholder="Origem" />
+                )}
+              />
+              <p className='text-red-600 text-left text-sm'>{errors?.origin?.message}</p>
+            </div>
+          </div>
 
-        <Controller
-          name="origin"
-          control={control}
-          rules={{ required: 'Por favor insira a origem!' }}
-          render={({ field }) => (
-            <Input {...field} placeholder="Origem" />
-          )}
-        />
+          <div className="w-full">
+            <Controller
+              name="mainFunction"
+              control={control}
+              render={({ field }) => (
+                <TextArea {...field} placeholder="Função Principal" />
+              )}
+            />
+            <p className='text-red-600 text-left text-sm'>{errors?.mainFunction?.message}</p>
+          </div>
 
-        <Controller
-          name="category"
-          control={control}
-          rules={{ required: 'Por favor selecione uma categoria!' }}
-          render={({ field }) => (
-            <Select {...field} placeholder="Categoria">
-              <Option value="Alimentícios">Alimentícios</Option>
-              <Option value="Corporais">Corporais</Option>
-              <Option value="Saneantes">Saneantes</Option>
-            </Select>
-          )}
-        />
+          <div className="w-full">
+            <Controller
+              name="category"
+              control={control}
+              render={({ field }) => (
+                <Select className="w-full" {...field} placeholder="Categoria">
+                  <Option value={1} >Alimentícios</Option>
+                  <Option value={2}>Corporais</Option>
+                  <Option value={3}>Saneantes</Option>
+                </Select>
+              )}
+            />
+            <p className='text-red-600 text-left text-sm'>{errors?.category?.message}</p>
+          </div>
 
-        <Button type="primary" htmlType="submit">
-          Cadastrar
-        </Button>
+          <Button className="bg-blue-500" type="primary" htmlType="submit">
+            Cadastrar
+          </Button>
+        </div>
       </form>
     </div>
   );

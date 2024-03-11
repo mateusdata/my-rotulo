@@ -46,6 +46,7 @@ function Home() {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Pesquisar"
+              className='rounded-2xl h-14 i'
             />
             {alimentos.length > 0 && (
               <div className="absolute z-10 bg-white w-full mt-1 p-2 border border-gray-200 rounded shadow-md">

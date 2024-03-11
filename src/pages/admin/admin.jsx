@@ -4,6 +4,7 @@ import Loading from '../../components/loading/loading';
 import PulseLoader from 'react-spinners/PulseLoader';
 import Dashboard from '../../components/dashboard/Dashboard';
 import RegisterProducts from '../../components/dashboard/registerProducts';
+import GlobalLayout from '../../layouts/GlobalLayout';
 
 function Admin() {
   const [alimentos, setAlimentos] = useState([]);
@@ -26,10 +27,7 @@ function Admin() {
     )
   }
   return (
-    <Dashboard>
-
-
-
+    <GlobalLayout>
       <div style={{ display: "none" }}>
         <br />
         {showItens && alimentos.map((item) => (
@@ -48,7 +46,7 @@ function Admin() {
       </div>
       <RegisterProducts />
 
-    </Dashboard>
+    </GlobalLayout>
   );
 }
 

@@ -36,7 +36,7 @@ export default function Dashboard({ children }) {
   return (
     <>
       <div className="min-h-full ">
-        <Disclosure as="nav" className="bg-gray-800 p-3">
+        <Disclosure as="nav" className="bg-gray-50 p-3">
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

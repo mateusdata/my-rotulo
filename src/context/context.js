@@ -1,3 +1,4 @@
+import { Spin } from "antd";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HashLoader } from "react-spinners";
@@ -26,16 +27,29 @@ export const AuthProvider = ({ children }) => {
     //alert(cpf + " "+ senha +" ");
     localStorage.setItem("usuario", JSON.stringify({ cpf }));
     setUser({ cpf })
+   setTimeout(() => {
     setLoad(false);
+   }, 1200);
     navigate("/adm");
 
   };
   const logout = () => {
+    setLoad(true)
+   setTimeout(() => {
     navigate("/");
     setUser("");
     localStorage?.removeItem("usuario");
+    setLoad(false)
+   }, 1200);
 
   };
+  if(load){
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Spin size="default"/>
+      </div>
+    )
+  }
 
   if (false) { //se tirar esse loading ele redireciona pra /login mesmo se estiver logado
     return <div style={{ display: "flex", color: "blue", justifyContent: "center", alignItems: "center", height: "100vh" }} className="loading">
