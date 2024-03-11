@@ -1,31 +1,22 @@
 import React from 'react';
-import { Input, Button } from 'antd';
+import { PageHeader, Typography } from 'antd';
+import GlobalLayout from '../../layouts/GlobalLayout';
 
-const LoginForm = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+const { Paragraph } = Typography;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email:', email);
-    console.log('Senha:', password);
-  };
-
+const ContactPage = () => {
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Senha:
-        <Input.Password value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <Button type="primary" htmlType="submit">
-        Entrar
-      </Button>
-    </form>
+    <GlobalLayout>
+
+    <div className="mx-auto max-w-lg p-6">
+      <h1>Entre em contato conosco</h1>
+      <Paragraph>
+        Para entrar em contato conosco, envie um email para{' '}
+        <a href="mailto:mateus.sival@example.com">mateus.sival@example.com</a>.
+      </Paragraph>
+    </div>
+    </GlobalLayout>
   );
 };
 
-export default LoginForm;
+export default ContactPage;
