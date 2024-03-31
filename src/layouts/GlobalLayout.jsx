@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Contexto } from '../context/context';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { UserAddOutlined } from '@ant-design/icons';
+import { UserAddOutlined, SearchOutlined } from '@ant-design/icons';
 function GlobalLayout({ children }) {
   const [showMenu, setShowMenu] = useState(false);
   const { currentPage, setCurrentPage } = useContext(Contexto)
@@ -24,25 +24,30 @@ function GlobalLayout({ children }) {
     };
     fetchData();
   }, []);
-  
+
 
   return (
     <>
       <html class="min-h-screen">
-        <body class="bg-white dark:bg-slate-900 flex min-h-screen w-full">
-          <div class=" w-full 2xl:w-[80rem] flex flex-col mx-auto size-full">
+        <body class="bg-gray-10 dark:bg-slate-900 flex min-h-screen w-full">
+          <div class=" w-full flex flex-col mx-auto size-full">
 
-            <header class="mb-2 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-2">
-              <nav class="w-full px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
+            <header class="mb-2 fixed bg-green-500 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-2">
+              <nav class="w-full  px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
                 <div class="flex items-center justify-between">
                   {nomeUser ? <a class="flex-none text-xl font-semibold dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand">
                     <UserAddOutlined color='red' className='text-blue-600' />
+
                     <span className='text-blue-600'>{` ${nomeUser ? nomeUser : "Administrador"}`}</span>
                   </a> :
-                    <a class="flex-none text-xl font-semibold dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand"> O que é isso no meu rótulo
-                    </a>
+                    <div className='flex gap-2'>
+                      <a class="flex-none text-xl font-semibold text-white dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand"> O que é isso no meu rótulo
+                      </a>
+                      <SearchOutlined  style={{ fontSize: '86px'}} color='red' className='text-white  animate-pulse rotate-0'/>
+                    </div>
+
                   }
-                  <a class="flex-none text-xl font-semibold dark:text-white text-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-600 sm:hidden" href="#" aria-label="Brand">{`${nomeUser ? nomeUser : "Meu rótulo"}`}</a>
+                  <a class="flex-none text-xl font-semibold dark:text-white text-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-600 sm:hidden" href="#" aria-label="Brand">{`${nomeUser ? nomeUser : "Meu rótulo"}`}</a>
 
                   <div class="sm:hidden">
 
@@ -54,19 +59,19 @@ function GlobalLayout({ children }) {
                 </div>
                 <div id="navbar-collapse-with-animation" class={`hs-collapse ${!showMenu && "hidden"} overflow-hidden transition-all duration-300 basis-full grow sm:block`}>
                   {!nomeUser ? <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-                    <Link to={"/"} onClick={() => setCurrentPage(1)} class={`font-medium ${currentPage === 1 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
-                    <Link to={"/sobre"} onClick={() => setCurrentPage(2)} class={`font-medium ${currentPage === 2 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>sobre</Link>
-                    <Link to={"/contato"} onClick={() => setCurrentPage(3)} class={`font-medium ${currentPage === 3 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>contato</Link>
+                    <Link to={"/"} onClick={() => setCurrentPage(1)} class={`font-medium text-xl ${currentPage === 1 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
+                    <Link to={"/sobre"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>sobre</Link>
+                    <Link to={"/contato"} onClick={() => setCurrentPage(3)} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>contato</Link>
                   </div>
                     :
                     <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
-                      <Link to={"/adm"} onClick={() => setCurrentPage(1)} class={`font-medium ${currentPage === 1 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>cadastro</Link>
-                      <Link to={"/edit"} onClick={() => setCurrentPage(2)} class={`font-medium ${currentPage === 2 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>edição</Link>
-                      <Link to={"/"} onClick={() => setCurrentPage(3)} class={`font-medium ${currentPage === 3 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
+                      <Link to={"/adm"} onClick={() => setCurrentPage(1)} class={`font-medium text-xl ${currentPage === 1 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>cadastro</Link>
+                      <Link to={"/edit"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>edição</Link>
+                      <Link to={"/"} onClick={() => setCurrentPage(3)} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
                       <Link to={"/login"} onClick={() => {
                         logout();
                         setCurrentPage(1)
-                      }} class={`font-medium ${currentPage === 4 ? "text-blue-600 hover:text-blue-700 " : "text-gray-500 hover:text-gray-400"} sm:py-3  hover:text-gray-400 text-red-600 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer  `}> | sair</Link>
+                      }} class={`font-medium ${currentPage === 4 ? "text-gray-800 hover:text-gray-900 " : "text-gray-500 hover:text-gray-900"} sm:py-3  hover:text-gray-400 text-red-600 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer  `}> | sair</Link>
                     </div>
 
                   }
@@ -74,12 +79,12 @@ function GlobalLayout({ children }) {
                 </div>
               </nav>
             </header>
-            <main id="content" role="main">
-              <div class="text-center py-10 px-4 sm:px-6 lg:px-8 ">
+            <main>
+              <div class="h-full pt-12 mt-5">
                 {children}
+
               </div>
             </main>
-
 
             <footer class="mt-auto text-center py-5">
               <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

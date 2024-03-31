@@ -42,7 +42,7 @@ const LoginPage = () => {
   return (
     <div>
       <div className="h-full">
-        <div className="dark:bg-slate-900 bg-gray-100 flex h-full items-center justify-center sm:min-h-screen py-16">
+        <div className="dark:bg-slate-900 bg-green-500 flex h-full items-center justify-center sm:min-h-screen py-16">
           <main className="w-full max-w-md mx-auto p-6">
             <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
               <div className="p-4 sm:p-7">

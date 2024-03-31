@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Select, Input, Button } from 'antd';
+import { Select, Input, Button, AutoComplete, ConfigProvider } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import GlobalLayout from '../../layouts/GlobalLayout';
+import Logo from "../../images/marca.png"
 
 const { Option } = Select;
-
 function Home() {
   const [alimentos, setAlimentos] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -37,63 +37,61 @@ function Home() {
     }
   }
 
+  const options = [
+    {
+      value: 'Burns Bay Road',
+    },
+    {
+      value: 'Downing Street',
+    },
+    {
+      value: 'Wall Street',
+    },
+  ];
   return (
     <GlobalLayout>
-      <div className="container mx-auto p-4">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Input
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Pesquisar"
-              className='rounded-2xl h-14 i'
+      <div className=" flex items-center justify-center md:min-h-[60vh] flex-col">
+
+        <div className="flex  w-[100%] md:w-[550px] flex-col   p-10 md:p-12  gap-4">
+
+          <img src={Logo} alt="" className='object-contain hover:object-scale-down md:max-h-24 max-h-16' />
+          <ConfigProvider
+            theme={{
+              token: {
+                /* here is your global tokens */
+                borderRadiusSM: 20,
+                borderRadius: 20,
+              },
+            }}
+          >
+            <AutoComplete
+              onSelect={()=>alert("oi")}
+              options={options}
+              placeholder="Pesquisar alimentos"
+              className='h-10 w-full rounded-2xl'
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+              }
             />
-            {alimentos.length > 0 && (
-              <div className="absolute z-10 bg-white w-full mt-1 p-2 border border-gray-200 rounded shadow-md">
-                {alimentos.map((item) => (
-                  <p key={item.nome_pt} className="cursor-pointer hover:bg-gray-100 p-1" onClick={() => setSearchValue(item.nome_pt)}>
-                    {item.nome_pt}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
+          </ConfigProvider>
+
+          <div className=' flex items-center justify-between md:justify-around'>
           <Select
-            style={{ flex: 'none', width: 120 }}
+          className='flex-1'
+            style={{ flex: 'none' }}
             placeholder="Categoria"
+            defaultValue={"Alimentícios"}
             onChange={(value) => console.log(value)}
           >
             <Option value="Alimentícios">Alimentícios</Option>
             <Option value="Corporais">Corporais</Option>
             <Option value="Saneantes">Saneantes</Option>
           </Select>
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            onClick={listSeachAlimentos}
-          >
-            Pesquisar
-          </Button>
+          <Button className='bg-green-500' type="primary" onClick={listSeachAlimentos}>Pesquisar</Button>
+        </div>
         </div>
 
-        {alimentos.length > 0 && (
-          <div className="mt-4">
-            {alimentos.map((item) => (
-              <div key={item.nome_pt} className="mt-4">
-                <h1>{item.nome_pt}</h1>
-                <p>{`Inglês - ${item.nome_us}`}</p>
-                <p>{`Latim - ${item.nome_latim}`}</p>
-                <p>Função Principal</p>
-                <p>{item?.funcao_principal}</p>
-                <p>Origem</p>
-                <p>{item?.origin}</p>
-                <p>Categoria</p>
-                <p>{item?.categoria_id === 1 ? "Alimenticios" : item?.categoria_id === 2 ? "Corporais" : "Saneantes"}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
+       
         {erro && <h1 className="mt-4 text-red-600">Erro na busca</h1>}
       </div>
     </GlobalLayout>
