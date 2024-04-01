@@ -10,11 +10,11 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const schema = yup.object().shape({
-  namePt: yup.string().matches(/^[A-Za-zÀ-ú\s]+$/, 'Nome em Português inválido').required('Obrigatório'),
-  nameUs: yup.string().matches(/^[A-Za-z\s]+$/, 'Nome em Inglês inválido').required('Obrigatório'),
-  nameLatin: yup.string().matches(/^[A-Za-z\s]+$/, 'Nome em Latim inválido').required('Obrigatório'),
-  origin: yup.string().matches(/^[A-Za-z\s]+$/, 'Origem inválida').required('Obrigatório'),
-  mainFunction: yup.string().matches(/^[A-Za-z\s]+$/, 'Função Principal inválida').required('Obrigatório'),
+  namePt: yup.string().matches(/^[^0-9]*$/, 'Nome em Português inválido').required('Obrigatório'),
+  nameUs: yup.string().matches(/^[^0-9]*$/, 'Nome em Inglês inválido').required('Obrigatório'),
+  nameLatin: yup.string().matches(/^[^0-9]*$/, 'Nome em Latim inválido').required('Obrigatório'),
+  origin: yup.string().matches(/^[^0-9]*$/, 'Origem inválida').required('Obrigatório'),
+  mainFunction: yup.string().matches(/^[^0-9]*$/, 'Função Principal inválida').required('Obrigatório'),
   category: yup.number().required('Obrigatório').typeError('Selecione uma categoria')
 });
 
@@ -54,8 +54,8 @@ export default function RegisterProducts() {
       DataDeAdicao: formatDateToBR(new Date()),
       nomeUser
     }).then((response) => {
-    //  openNotificationWithIcon('success')
-//      reset();
+     openNotificationWithIcon('success')
+    reset();
     }).catch((error) => {
       setError("namePt", { message: error?.response?.data?.error });
     });
@@ -72,8 +72,8 @@ export default function RegisterProducts() {
     <div className="container mx-auto px-4">
       {contextHolder}
 
-      <h1 className="text-2xl font-bold mb-5">Cadastro de rótulos de alimentos</h1>
-      <p className="mb-5">Simplifique o cadastro de rótulos alimentícios.</p>
+      <h1 className="text-2xl text-center font-bold mb-5">Cadastro de rótulos de alimentos</h1>
+      <p className="mb-5 text-center">Simplifique o cadastro de rótulos alimentícios.</p>
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(cadastrarAlimento)}>
         <div className="w-full flex flex-col gap-5  sm:px-48 ">
           <div className="flex md:flex-row flex-col gap-2">
@@ -106,7 +106,7 @@ export default function RegisterProducts() {
                 name="nameLatin"
                 control={control}
                 render={({ field }) => (
-                  <Input {...field} placeholder="Nome em Latim" />
+                  <Input {...field} placeholder="Nome alternativo" />
                 )}
               />
               <p className='text-red-600 text-left text-sm'>{errors?.nameLatin?.message}</p>

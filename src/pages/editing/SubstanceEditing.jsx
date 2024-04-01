@@ -22,7 +22,7 @@ const SubstanceEditing = () => {
 
   return (
     <GlobalLayout>
-      <h1 className="text-xl font-semibold">Substâncias cadastradas</h1>
+      <h1 className="text-xl text-center font-semibold">Substâncias cadastradas</h1>
       <div className='p-12'>
 
         <div className='border rounded-lg shadow-sm '>

@@ -33,7 +33,6 @@ const LoginPage = () => {
       setError("senha",{message:"CPF ou senha incorretos"})
 
     } catch (error) {
-      alert("erro")
       setError("senha",{message:"CPF ou senha incorretos"})
     }
     console.log(data)

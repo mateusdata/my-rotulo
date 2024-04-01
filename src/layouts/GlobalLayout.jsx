@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Contexto } from '../context/context';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { UserAddOutlined, SearchOutlined } from '@ant-design/icons';
+import { UserAddOutlined, SearchOutlined, ExceptionOutlined, LogoutOutlined, LoginOutlined, SignatureOutlined } from '@ant-design/icons';
+import { MoonIcon } from '@heroicons/react/24/outline';
+import DarkMode from '../components/DarkMode';
 function GlobalLayout({ children }) {
   const [showMenu, setShowMenu] = useState(false);
   const { currentPage, setCurrentPage } = useContext(Contexto)
@@ -29,21 +31,21 @@ function GlobalLayout({ children }) {
   return (
     <>
       <html class="min-h-screen">
-        <body class="bg-gray-10 dark:bg-slate-900 flex min-h-screen w-full">
+        <body class="bg-gray-10 dark:bg-slate-200 flex min-h-screen w-full">
           <div class=" w-full flex flex-col mx-auto size-full">
 
-            <header class="mb-2 fixed bg-green-500 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-2">
+            <header class="mb-2 fixed bg-green-500 dark:bg-gray-800 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-1">
               <nav class="w-full  px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
                 <div class="flex items-center justify-between">
                   {nomeUser ? <a class="flex-none text-xl font-semibold dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand">
-                    <UserAddOutlined color='red' className='text-blue-600' />
+                    <UserAddOutlined color='red' className='text-white' />
 
-                    <span className='text-blue-600'>{` ${nomeUser ? nomeUser : "Administrador"}`}</span>
+                    <span className='text-white'>{` ${nomeUser ? nomeUser : "Administrador"}`}</span>
                   </a> :
                     <div className='flex gap-2'>
                       <a class="flex-none text-xl font-semibold text-white dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand"> O que é isso no meu rótulo
                       </a>
-                      <SearchOutlined  style={{ fontSize: '86px'}} color='red' className='text-white  animate-pulse rotate-0'/>
+                      <SearchOutlined style={{ fontSize: '86px' }} color='red' className='text-white  animate-pulse rotate-0' />
                     </div>
 
                   }
@@ -59,19 +61,24 @@ function GlobalLayout({ children }) {
                 </div>
                 <div id="navbar-collapse-with-animation" class={`hs-collapse ${!showMenu && "hidden"} overflow-hidden transition-all duration-300 basis-full grow sm:block`}>
                   {!nomeUser ? <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+
+                    <DarkMode />
                     <Link to={"/"} onClick={() => setCurrentPage(1)} class={`font-medium text-xl ${currentPage === 1 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
                     <Link to={"/sobre"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>sobre</Link>
                     <Link to={"/contato"} onClick={() => setCurrentPage(3)} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>contato</Link>
                   </div>
                     :
                     <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+                      <DarkMode />
+
                       <Link to={"/adm"} onClick={() => setCurrentPage(1)} class={`font-medium text-xl ${currentPage === 1 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>cadastro</Link>
                       <Link to={"/edit"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>edição</Link>
                       <Link to={"/"} onClick={() => setCurrentPage(3)} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
                       <Link to={"/login"} onClick={() => {
                         logout();
                         setCurrentPage(1)
-                      }} class={`font-medium ${currentPage === 4 ? "text-gray-800 hover:text-gray-900 " : "text-gray-500 hover:text-gray-900"} sm:py-3  hover:text-gray-400 text-red-600 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer  `}> | sair</Link>
+                      }} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">sair</Link>
+
                     </div>
 
                   }
