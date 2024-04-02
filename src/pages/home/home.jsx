@@ -10,7 +10,7 @@ const { Option } = Select;
 function Home() {
   const [alimentos, setAlimentos] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [categoria, setCategoria] = useState('Alimentícios');
+  const [categoria, setCategoria] = useState('1');
 
   const [sugestaoAlimentos, setSugestaoAlimentos] = useState([]);
 
@@ -21,7 +21,7 @@ function Home() {
     try {
       const response = await axios.get('/seach', {
         params: {
-          values: searchValue
+          values: searchValue, categoria
         }
       });
       setSugestaoAlimentos(response?.data);
@@ -35,7 +35,7 @@ function Home() {
       try {
         const response = await axios.get('/seachalimentos', {
           params: {
-            values: searchValue
+            values: searchValue, categoria
           }
         });
         setAlimentos(response?.data);
@@ -87,14 +87,13 @@ function Home() {
               value={categoria}
               onChange={(value) => setCategoria(value)}
             >
-              <Option value="Alimentícios">Alimentícios</Option>
-              <Option value="Corporais">Corporais</Option>
-              <Option value="Saneantes">Saneantes</Option>
+              <Option value="1">Alimentícios</Option>
+              <Option value="2">Corporais</Option>
+              <Option value="3">Saneantes</Option>
             </Select>
             <Button className='bg-green-500' type="primary" onClick={getAlimentos}>Pesquisar</Button>
           </div>
           <div>
-
             {alimentos?.map((alimento) => (
               <div key={alimento.id}>
                 <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
@@ -107,6 +106,7 @@ function Home() {
                 <div onClick={() => {
                   setAlimentos([]);
                   setSearchValue("");
+                  setCategoria("1")
                 }} className='group flex w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 cursor-pointer items-center mt-5 gap-2'>
                   <ClearOutlined className='cursor-pointer text-red-400 group-hover:text-white' />
                   <span>Nova pesquisa</span>

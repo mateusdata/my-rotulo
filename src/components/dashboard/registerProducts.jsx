@@ -51,7 +51,7 @@ export default function RegisterProducts() {
 
     axios.put('/add', {
       ...data,
-      DataDeAdicao: formatDateToBR(new Date()),
+      DataDeAdicao: new Date(),
       nomeUser
     }).then((response) => {
      openNotificationWithIcon('success')

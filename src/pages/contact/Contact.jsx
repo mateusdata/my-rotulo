@@ -1,20 +1,25 @@
 import React from 'react';
-import { PageHeader, Typography } from 'antd';
+import { MailOutlined } from '@ant-design/icons';
 import GlobalLayout from '../../layouts/GlobalLayout';
-
-const { Paragraph } = Typography;
 
 const ContactPage = () => {
   return (
     <GlobalLayout>
+      <div className="mx-auto max-w-lg p-6">
+        <h1 className='text-xl'>Entre em contato conosco</h1>
+        <p>
+          Não encontrou algum ingrediente? Gostaria de sugerir uma atualização? Quer estabelecer uma parceria?
+        </p>
+        <p>
+          Entre em contato e vamos conversar!
+        </p>
+        <p>
+          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:emanoeloliveira@ifba.edu.br">emanoeloliveira@ifba.edu.br</a><br />
+          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">rabelo@ifba.edu.br</a>
+          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">mateuspele2015@gmail.com</a>
 
-    <div className="mx-auto max-w-lg p-6">
-      <h1 className='text-xl'>Entre em contato conosco</h1>
-      <Paragraph>
-        <span className='text-lg'>Para entrar em contato conosco, envie um email para {" "}</span>
-        <a className='text-md' href="mailto:mateus.sival@example.com">mateus.sival@example.com</a>.
-      </Paragraph>
-    </div>
+        </p>
+      </div>
     </GlobalLayout>
   );
 };
