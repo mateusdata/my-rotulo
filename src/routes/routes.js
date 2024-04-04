@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { HashLoader } from "react-spinners";
 import { AuthProvider, Contexto } from "../context/context";
 import LoginPage from "../pages/login/loginPage";
 import Home from "../pages/home/home";
 import Admin from "../pages/admin/admin";
-import StatusTable from "../pages/status/status";
 import Contact from "../pages/contact/Contact";
 import About from "../pages/about/About";
 import { Spin } from "antd";
@@ -37,7 +35,6 @@ const Rotas = () => {
           <Route exact path="/sobre" element={<About />} />
           <Route exact path="/adm" element={<Private><Admin /></Private>} />
           <Route exact path="/edit" element={<Private><SubstanceEditing/></Private>} />
-          <Route exact path="/status" element={<Private><StatusTable /></Private>} />
           <Route exact path="/login" element={<LoginPage />} />
         </Routes>
       </AuthProvider>

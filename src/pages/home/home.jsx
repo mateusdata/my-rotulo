@@ -97,15 +97,15 @@ function Home() {
             {alimentos?.map((alimento) => (
               <div key={alimento.id}>
                 <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
-                <p className='text-gray-800'>{`Nome em ingles - ${alimento.nome_us}`}</p>
+                <p className='text-gray-800'>{`Nome em inglês - ${alimento.nome_us}`}</p>
                 <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimento.nome_latim}`}</p>
                 <span className='text-lg font-semibold '>Função Principal</span>
                 <p className='text-gray-800'>{alimento.funcao_principal}</p>
-                <p className='text-blue-500'>{"Categoria " + alimento?.categoria_id === 1 ? "Alimenticios" : alimento?.categoria_id === 2 ? "Corporais" : "Saneantes"}</p>
+                <p className='text-blue-500'>{"Categoria: " + (alimento?.categoria_id == 1 ? "Alimenticios" : alimento?.categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
 
                 <div onClick={() => {
                   setAlimentos([]);
-                  setSearchValue("");
+                  setSearchValue("")
                   setCategoria("1")
                 }} className='group flex w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 cursor-pointer items-center mt-5 gap-2'>
                   <ClearOutlined className='cursor-pointer text-red-400 group-hover:text-white' />

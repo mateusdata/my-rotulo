@@ -10,17 +10,17 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const schema = yup.object().shape({
-  namePt: yup.string().matches(/^[^0-9]*$/, 'Nome em Português inválido').required('Obrigatório'),
-  nameUs: yup.string().matches(/^[^0-9]*$/, 'Nome em Inglês inválido').required('Obrigatório'),
-  nameLatin: yup.string().matches(/^[^0-9]*$/, 'Nome em Latim inválido').required('Obrigatório'),
-  origin: yup.string().matches(/^[^0-9]*$/, 'Origem inválida').required('Obrigatório'),
-  mainFunction: yup.string().matches(/^[^0-9]*$/, 'Função Principal inválida').required('Obrigatório'),
+  namePt: yup.string().required('Obrigatório'),
+  nameUs: yup.string().required('Obrigatório'),
+  nameLatin: yup.string().required('Obrigatório'),
+  origin: yup.string().required('Obrigatório'),
+  mainFunction: yup.string().required('Obrigatório'),
   category: yup.number().required('Obrigatório').typeError('Selecione uma categoria')
 });
 
 
 export default function RegisterProducts() {
-  const data = { namePt: "", nameUs: "", nameLatin: "", origin: "", mainFunction: "", category: "selecione" }
+  const data = { namePt: "", nameUs: "", nameLatin: "", origin: "", mainFunction: "", category: "Selecione" }
 
   const { control, reset, handleSubmit, setError, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
@@ -69,12 +69,12 @@ export default function RegisterProducts() {
   }
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="md:w-3/4  mx-auto px-4">
       {contextHolder}
 
-      <h1 className="text-2xl text-center font-bold mb-5">Cadastro de rótulos de alimentos</h1>
-      <p className="mb-5 text-center">Simplifique o cadastro de rótulos alimentícios.</p>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(cadastrarAlimento)}>
+      <h1 className="text-2xl text-center font-bold mb-5">Cadastro de substância </h1>
+      <p className="mb-5 text-center">Simplifique o cadastro de substancias de rótulos de alimentos.</p>
+      <form className="flex flex-col gap-2 " onSubmit={handleSubmit(cadastrarAlimento)}>
         <div className="w-full flex flex-col gap-5  sm:px-48 ">
           <div className="flex md:flex-row flex-col gap-2">
             <div className="w-full  ">
@@ -129,7 +129,8 @@ export default function RegisterProducts() {
               name="mainFunction"
               control={control}
               render={({ field }) => (
-                <TextArea {...field} placeholder="Função Principal" />
+                <TextArea {...field} placeholder="Função Principal" style={{ height: '150px' }} />
+
               )}
             />
             <p className='text-red-600 text-left text-sm'>{errors?.mainFunction?.message}</p>
@@ -150,7 +151,7 @@ export default function RegisterProducts() {
             <p className='text-red-600 text-left text-sm'>{errors?.category?.message}</p>
           </div>
 
-          <Button className="bg-blue-500" type="primary" htmlType="submit">
+          <Button className="bg-green-500" type="primary" htmlType="submit">
             Cadastrar
           </Button>
         </div>

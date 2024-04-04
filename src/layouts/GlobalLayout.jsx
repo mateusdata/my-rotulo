@@ -72,7 +72,7 @@ function GlobalLayout({ children }) {
                       <DarkMode />
 
                       <Link to={"/adm"} onClick={() => setCurrentPage(1)} class={`font-medium text-xl ${currentPage === 1 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>cadastro</Link>
-                      <Link to={"/edit"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>edição</Link>
+                      <Link to={"/edit"} onClick={() => setCurrentPage(2)} class={`font-medium text-xl ${currentPage === 2 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `}>substancias</Link>
                       <Link to={"/"} onClick={() => setCurrentPage(3)} class={`font-medium text-xl ${currentPage === 3 ? "text-gray-800 hover:text-gray-900 " : "text-gray-50 hover:text-gray-900"} sm:py-3  hover:text-gray-400 dark:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 cursor-pointer `} aria-current="page">home</Link>
                       <Link to={"/login"} onClick={() => {
                         logout();
