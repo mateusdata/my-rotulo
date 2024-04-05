@@ -9,6 +9,6 @@ import axios from 'axios';
 
 
 // Set the global base URL for Axios
-axios.defaults.baseURL = `http://localhost:3002`;
+axios.defaults.baseURL = `/api`;
 
 export default axios;
