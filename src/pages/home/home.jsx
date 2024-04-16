@@ -99,6 +99,7 @@ function Home() {
                 <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
                 <p className='text-gray-800'>{`Nome em inglês - ${alimento.nome_us}`}</p>
                 <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimento.nome_latim}`}</p>
+                <p className='text-gray-800 mb-5'>{`Origem - ${alimento.origem}`}</p>
                 <span className='text-lg font-semibold '>Função Principal</span>
                 <p className='text-gray-800'>{alimento.funcao_principal}</p>
                 <p className='text-blue-500'>{"Categoria: " + (alimento?.categoria_id == 1 ? "Alimenticios" : alimento?.categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
