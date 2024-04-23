@@ -222,6 +222,7 @@ const SubstanceEditing = () => {
                     </Popconfirm>
                     <Button className='bg-yellow-400' type="primary" onClick={() => {
                       handleEdit(record)
+                      setValue("DataDeAdicao", new Date())
                       setOpen(true)
                       setValue('id', record.id);
                       setValue('namePt', record.nome_pt);
@@ -242,7 +243,7 @@ const SubstanceEditing = () => {
         </div>
       </div>
       <br />
-      <pre>{true && JSON.stringify(watch(), null, 2)}</pre>
+      <pre>{false && JSON.stringify(watch(), null, 2)}</pre>
 
     </GlobalLayout>
   );

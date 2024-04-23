@@ -19,7 +19,6 @@ function DarkMode() {
         <div className=' w-full items-center gap-4 justify-end    md:flex flex '>
             <div className='flex  '>
                 <button className='dark:text-black pr-1 ronde flex flex-row flex-nowrap justify-center items-center gap-1' onClick={() => setDarkMode(!darkMode)}>
-                    <span className={`hidden  md:flex ${darkMode ? "text-gray-800": "text-gray-50"}`}>{`Modo ${darkMode ? "light" : "Dark"}`}</span>
                     
                     <MdDarkMode size={26} color={`${!darkMode ? 'black' : '#0a5f9b'}`} />
                 </button>

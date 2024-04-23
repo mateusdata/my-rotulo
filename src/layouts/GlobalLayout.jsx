@@ -30,11 +30,10 @@ function GlobalLayout({ children }) {
 
   return (
     <>
-      <html class="min-h-screen">
         <body class="bg-gray-10 dark:bg-slate-200 flex min-h-screen w-full">
           <div class=" w-full flex flex-col mx-auto size-full">
 
-            <header class="mb-2 fixed bg-green-500 dark:bg-gray-800 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  border-b-gray-300 z-50 w-full text-sm py-1">
+            <header class="mb-2 fixed bg-green-500 dark:bg-gray-800 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  dark:border-b-gray-800 border-b-gray-300 z-50 w-full text-sm py-1">
               <nav class="w-full  px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
                 <div class="flex items-center justify-between">
                   {nomeUser ? <a class="flex-none text-xl font-semibold dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand">
@@ -86,23 +85,24 @@ function GlobalLayout({ children }) {
                 </div>
               </nav>
             </header>
-            <main>
+            <main className='flex flex-col justify-between h-full'>
               <div class="h-full pt-12 mt-5">
                 {children}
 
               </div>
-            </main>
 
-            <footer class="mt-auto text-center py-5">
-              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-gray-500">© Oque é isso no meu rótulo -  2024, (IFBA) - Instituto Federal da Bahia</p>
-              </div>
-            </footer>
+              <footer class="mt-auto text-center py-5">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-2 flex-col md:flex-row items-center justify-center">
+                  <p class="text-gray-500">© Oque é isso no meu rótulo?   (IFBA) Instituto Federal da Bahia</p>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Logotipo_IFET.svg" alt="Logo do IFBA" className='h-5 w-auto' />
+                </div>
+              </footer>
+
+            </main>
 
 
           </div>
         </body>
-      </html>
     </>
   );
 }
