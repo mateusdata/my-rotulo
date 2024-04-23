@@ -11,8 +11,21 @@ export const AuthProvider = ({ children }) => {
   const [nomeUser, setNomeUser] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+  const [darkMode, setDarkMode] = useState(localStorage.theme === 'dark');
 
   useEffect(() => {
+      if (darkMode) {
+          document.documentElement.classList.add('dark');
+          localStorage.theme = 'dark';
+      } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.theme = 'light';
+      }
+  }, [darkMode]);
+
+
+  useEffect(() => {
+    
     const recovereUser = localStorage.getItem("usuario");
     if (recovereUser) {
       setUser(JSON.parse(recovereUser));
@@ -67,7 +80,8 @@ export const AuthProvider = ({ children }) => {
         nomeUser,
         setNomeUser,
         currentPage, 
-        setCurrentPage
+        setCurrentPage,
+        darkMode, setDarkMode
       }}
     >
       {children}

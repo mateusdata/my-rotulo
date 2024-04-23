@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Select, Input, Button, AutoComplete, ConfigProvider } from 'antd';
 import { ClearOutlined, SearchOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import GlobalLayout from '../../layouts/GlobalLayout';
 import Logo from "../../images/marca.png"
+import LogoDark from "../../images/marca-dark.png"
+import { Contexto } from '../../context/context';
+
 
 
 const { Option } = Select;
@@ -11,8 +14,9 @@ function Home() {
   const [alimentos, setAlimentos] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [categoria, setCategoria] = useState('1');
-
+  const [isDarkmode, setIsDarkMode] = useState(false)
   const [sugestaoAlimentos, setSugestaoAlimentos] = useState([]);
+  const { darkMode, setDarkMode } = useContext(Contexto);
 
   const [erro, setErro] = useState(false);
 
@@ -66,15 +70,14 @@ function Home() {
       <div className=" flex items-center justify-center md:min-h-[60vh] flex-col">
 
         <form onSubmit={getAlimentos} className="flex   w-[100%] md:w-[550px] flex-col   p-10 md:p-12  gap-4">
-
-          <img src={Logo} alt="" className='object-contain hover:object-scale-down md:max-h-24 max-h-16' />
+          <img src={darkMode ? LogoDark:  Logo} alt="" className='object-contain hover:object-scale-down md:max-h-24 max-h-16' />
           <ConfigProvider
             theme={{
               token: {
                 /* here is your global tokens */
                 borderRadiusSM: 20,
                 borderRadius: 20,
-                
+
               },
             }}
           >

@@ -30,10 +30,10 @@ function GlobalLayout({ children }) {
 
   return (
     <>
-        <body class="bg-gray-10 dark:bg-slate-200 flex min-h-screen w-full">
+        <body class="bg-gray-10 dark:bg-gray-950 flex min-h-screen w-full">
           <div class=" w-full flex flex-col mx-auto size-full">
 
-            <header class="mb-2 fixed bg-green-500 dark:bg-gray-800 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  dark:border-b-gray-800 border-b-gray-300 z-50 w-full text-sm py-1">
+            <header class="mb-2 fixed bg-green-500  dark:bg-slate-800 flex flex-wrap sm:justify-start sm:flex-nowrap border-b  dark:border-b-gray-800 border-b-gray-300 z-50 w-full text-sm py-1">
               <nav class="w-full  px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
                 <div class="flex items-center justify-between">
                   {nomeUser ? <a class="flex-none text-xl font-semibold dark:text-white  focus:ring- hidden sm:block" href="#" aria-label="Brand">
