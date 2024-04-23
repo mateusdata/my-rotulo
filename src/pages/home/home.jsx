@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select, Input, Button, AutoComplete, ConfigProvider } from 'antd';
 import { ClearOutlined, SearchOutlined } from '@ant-design/icons';
 import axios from 'axios';
@@ -46,9 +46,20 @@ function Home() {
     }
   };
 
-  const options = sugestaoAlimentos?.map((alimento) => ({
-    value: alimento?.nome_pt,
-  }));
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    if (sugestaoAlimentos) {
+      const newOptions = sugestaoAlimentos.map((alimento) => ({
+        value: alimento?.nome_pt,
+      }));
+      setOptions(newOptions);
+      return
+    }
+    setOptions([]);
+
+
+  }, [sugestaoAlimentos]);
 
   return (
     <GlobalLayout>
@@ -85,7 +96,10 @@ function Home() {
               style={{ flex: 'none' }}
               defaultValue={"Alimentícios"}
               value={categoria}
-              onChange={(value) => setCategoria(value)}
+              onChange={(value) => {
+                setOptions([])
+                setCategoria(value)
+              }}
             >
               <Option value="1">Alimentícios</Option>
               <Option value="2">Corporais</Option>
@@ -94,7 +108,7 @@ function Home() {
             <Button className='bg-green-500' type="primary" onClick={getAlimentos}>Pesquisar</Button>
           </div>
           <div>
-            {alimentos?.map((alimento) => (
+            {/*alimentos?.map((alimento) => (
               <div key={alimento.id}>
                 <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
                 <p className='text-gray-800'>{`Nome em inglês - ${alimento.nome_us}`}</p>
@@ -114,7 +128,30 @@ function Home() {
                 </div>
 
               </div>
-            ))}
+              ))*/}
+
+            {alimentos.length > 0 && (
+              <div key={alimentos[0].id}>
+                <h3 className='text-lg font-bold'>{alimentos[0].nome_pt}</h3>
+                <p className='text-gray-800'>{`Nome em inglês - ${alimentos[0].nome_us}`}</p>
+                <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimentos[0].nome_latim}`}</p>
+                <span className='text-lg font-semibold'>Função Principal</span>
+                <p className='text-gray-800  mb-5'>{alimentos[0].funcao_principal}</p>
+                <span className='text-lg font-semibold'>Origem</span>
+                <p className='text-gray-800 mb-5'>{alimentos[0].origin}</p>
+                <p className='text-blue-500  mb-5'>{"Categoria: " + (alimentos[0].categoria_id == 1 ? "Alimentícios" : alimentos[0].categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
+                <div onClick={() => {
+                  setAlimentos([]);
+                  setOptions([])
+                  setSearchValue("");
+                  setCategoria("1");
+                }} className='group flex w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 cursor-pointer items-center mt-5 gap-2'>
+                  <ClearOutlined className='cursor-pointer text-red-400 group-hover:text-white' />
+                  <span>Nova pesquisa</span>
+                </div>
+              </div>
+            )}
+
           </div>
 
         </form>
