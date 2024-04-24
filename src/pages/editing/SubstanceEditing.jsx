@@ -19,11 +19,11 @@ const SubstanceEditing = () => {
     id: yup.number().nullable(),
     DataDeAdicao: yup.string(),
     category: yup.string(),
-    namePt: yup.string().required("Obrigatorio"),
-    nameUs: yup.string().required("Obrigatorio"),
-    nameLatin: yup.string().required("Obrigatorio"),
-    mainFunction: yup.string().required("Obrigatorio"),
-    origin: yup.string().required("Obrigatorio"),
+    namePt: yup.string().required("⛔ Campo obrigatório"),
+    nameUs: yup.string().required("⛔ Campo obrigatório"),
+    nameLatin: yup.string().required("⛔ Campo obrigatório"),
+    mainFunction: yup.string().required("⛔ Campo obrigatório"),
+    origin: yup.string().required("⛔ Campo obrigatório"),
   });
 
   const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm({
@@ -111,33 +111,33 @@ const SubstanceEditing = () => {
 
       <Modal open={open} onCancel={() => setOpen(!open)} footer={false} >
         <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
-          <h1 className='text-center font-semibold text-lg'>Atualização de substâncias</h1>
+          <h1 className='text-center font-semibold text-lg'>Atualização de substância</h1>
           <input
             defaultValue={currentData?.nomePt}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
             {...register('namePt', { required: 'Name PT is required' })}
-            placeholder="Name PT"
+            placeholder="Name em português"
           />
           {errors.namePt && <span className="text-red-500">{errors.namePt.message}</span>}
           <input
             defaultValue={currentData?.nomeUs}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
             {...register('nameUs', { required: 'Name US is required' })}
-            placeholder="Name US"
+            placeholder="Name em inglês"
           />
           {errors.nameUs && <span className="text-red-500">{errors.nameUs.message}</span>}
           <input
             defaultValue={currentData?.nomeLatin}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
             {...register('nameLatin', { required: 'Name Latin is required' })}
-            placeholder="Name Latin"
+            placeholder="Nome em latim"
           />
           {errors.nameLatin && <span className="text-red-500">{errors.nameLatin.message}</span>}
           <textarea
             defaultValue={currentData?.mainFunction}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('mainFunction', { required: 'Main Function is required' })}
-            placeholder="Main Function"
+            {...register('mainFunction', { required: 'função principal is required' })}
+            placeholder="função principal"
           />
           {errors.mainFunction && <span className="text-red-500">{errors.mainFunction.message}</span>}
           <textarea

@@ -11,21 +11,23 @@ export const AuthProvider = ({ children }) => {
   const [nomeUser, setNomeUser] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
+
   const [darkMode, setDarkMode] = useState(localStorage.theme === 'dark');
 
   useEffect(() => {
-      if (darkMode) {
-          document.documentElement.classList.add('dark');
-          localStorage.theme = 'dark';
-      } else {
-          document.documentElement.classList.remove('dark');
-          localStorage.theme = 'light';
-      }
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.theme = 'dark';
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+    }
   }, [darkMode]);
 
 
   useEffect(() => {
-    
+
     const recovereUser = localStorage.getItem("usuario");
     if (recovereUser) {
       setUser(JSON.parse(recovereUser));
@@ -40,26 +42,26 @@ export const AuthProvider = ({ children }) => {
     //alert(cpf + " "+ senha +" ");
     localStorage.setItem("usuario", JSON.stringify({ cpf }));
     setUser({ cpf })
-   setTimeout(() => {
-    setLoad(false);
-   }, 1200);
+    setTimeout(() => {
+      setLoad(false);
+    }, 1200);
     navigate("/adm");
 
   };
   const logout = () => {
     setLoad(true)
-   setTimeout(() => {
-    navigate("/");
-    setUser("");
-    localStorage?.removeItem("usuario");
-    setLoad(false)
-   }, 1200);
+    setTimeout(() => {
+      navigate("/");
+      setUser("");
+      localStorage?.removeItem("usuario");
+      setLoad(false)
+    }, 1200);
 
   };
-  if(load){
+  if (load) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Spin size="default"/>
+        <Spin size="default" />
       </div>
     )
   }
@@ -79,8 +81,9 @@ export const AuthProvider = ({ children }) => {
         user,
         nomeUser,
         setNomeUser,
-        currentPage, 
+        currentPage,
         setCurrentPage,
+        showMenu, setShowMenu,
         darkMode, setDarkMode
       }}
     >

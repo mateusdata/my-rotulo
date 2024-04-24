@@ -70,7 +70,7 @@ function Home() {
       <div className=" flex items-center justify-center md:min-h-[60vh] flex-col">
 
         <form onSubmit={getAlimentos} className="flex   w-[100%] md:w-[550px] flex-col   p-10 md:p-12  gap-4">
-          <img src={darkMode ? LogoDark:  Logo} alt="" className='object-contain hover:object-scale-down md:max-h-24 max-h-16' />
+          <img src={darkMode ? LogoDark : Logo} alt="" className='object-contain hover:object-scale-down md:max-h-24 max-h-16' />
           <ConfigProvider
             theme={{
               token: {
@@ -115,7 +115,7 @@ function Home() {
             {/*alimentos?.map((alimento) => (
               <div key={alimento.id}>
                 <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
-                <p className='text-gray-800'>{`Nome em inglês - ${alimento.nome_us}`}</p>
+                <p className='text-gray-800 dark:text-gray-50'>{`Nome em inglês - ${alimento.nome_us}`}</p>
                 <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimento.nome_latim}`}</p>
                 <p className='text-gray-800 mb-5'>{`Origem - ${alimento.origem}`}</p>
                 <span className='text-lg font-semibold '>Função Principal</span>
@@ -136,22 +136,25 @@ function Home() {
 
             {alimentos.length > 0 && (
               <div key={alimentos[0].id}>
-                <h3 className='text-lg font-bold'>{alimentos[0].nome_pt}</h3>
-                <p className='text-gray-800'>{`Nome em inglês - ${alimentos[0].nome_us}`}</p>
-                <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimentos[0].nome_latim}`}</p>
-                <span className='text-lg font-semibold'>Função Principal</span>
-                <p className='text-gray-800  mb-5'>{alimentos[0].funcao_principal}</p>
-                <span className='text-lg font-semibold'>Origem</span>
-                <p className='text-gray-800 mb-5'>{alimentos[0].origin}</p>
-                <p className='text-blue-500  mb-5'>{"Categoria: " + (alimentos[0].categoria_id == 1 ? "Alimentícios" : alimentos[0].categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
+                <h3 className='text-lg font-bold  dark:text-gray-50 '>{alimentos[0].nome_pt}</h3>
+                <p className='text-gray-800 dark:text-gray-50'>{`Nome em inglês - ${alimentos[0].nome_us}`}</p>
+                <p className='text-gray-800 dark:text-gray-50 mb-5'>{`Nome em alternativo - ${alimentos[0].nome_latim}`}</p>
+                <span className='text-lg  text-gray-800 dark:text-gray-50 font-semibold'>Função Principal</span>
+                <p className='text-gray-800  dark:text-gray-50  mb-5'>{alimentos[0].funcao_principal}</p>
+                <span className='text-lg text-gray-800 dark:text-gray-50 font-semibold'>Origem</span>
+                <p className='text-gray-800 dark:text-gray-50 mb-5'>{alimentos[0].origin}</p>
+                <div  className='flex gap-5'>
+                  <span className='text-lg text-gray-800 dark:text-gray-50 font-semibold'>Categoria</span>
+                  <p className='text-blue-50  mb-5'>{(alimentos[0].categoria_id == 1 ? "Alimentícios" : alimentos[0].categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
+                </div>
                 <div onClick={() => {
                   setAlimentos([]);
                   setOptions([])
                   setSearchValue("");
                   setCategoria("1");
-                }} className='group flex w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 cursor-pointer items-center mt-5 gap-2'>
-                  <ClearOutlined className='cursor-pointer text-red-400 group-hover:text-white' />
-                  <span>Nova pesquisa</span>
+                }} className='group flex text-center sm:w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 bg-red-400 cursor-pointer items-center mt-5 gap-2'>
+                  <ClearOutlined className='cursor-pointer text-gray-200 group-hover:text-white' />
+                  <span className='text-center text-gray-50  ' >Nova pesquisa</span>
                 </div>
               </div>
             )}

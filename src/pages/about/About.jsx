@@ -55,7 +55,7 @@ const About = () => {
               <div className="text-lg text-gray-800 dark:text-gray-50">
             <p>
                 <UserOutlined /> Fernanda Castelo Branco - Professora BSI<br />
-                <UserOutlined /> Raimundo Carvalho Rabêlo - Professor BSI<br />
+                <UserOutlined /> Raimundo Carvalho Rabelo Filho - Professor BSI<br />
                 <UserOutlined /> Davy Matos - Estudante BSI<br />
                 <UserOutlined /> Mateus dos Santos Silva - Estudante BSI<br />
                 <UserOutlined /> Felipe Jesus Macedo - Estudante BSI<br />

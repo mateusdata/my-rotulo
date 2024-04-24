@@ -15,8 +15,8 @@ const ContactPage = () => {
         </p>
         <p className='dark:text-white'>
           <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:emanoeloliveira@ifba.edu.br">emanoeloliveira@ifba.edu.br</a><br />
-          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">rabelo@ifba.edu.br</a>
-          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">mateuspele2015@gmail.com</a>
+          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">rabelo@ifba.edu.br</a><br />
+          <MailOutlined /> <strong>E-mail:</strong> <a href="mailto:rabelo@ifba.edu.br">mateuspele2015@gmail.com</a><br />
 
         </p>
       </div>
