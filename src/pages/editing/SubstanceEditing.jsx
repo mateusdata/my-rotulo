@@ -82,7 +82,7 @@ const SubstanceEditing = () => {
     } catch (error) {
       updatPage()
     }
-  }
+  } 
 
   const handleEdit = (record) => {
     // Aqui você pode abrir um modal ou outra forma de edição com os dados do item
