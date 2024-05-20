@@ -87,7 +87,7 @@ const LoginPage = () => {
                         </div>
                         <div className="relative">
 
-                          <input  {...register("senha")} type="senha" id="senha" name="senha" className="py-3 px-4 block w-full border-gray-200 border focus:outline-blue-600 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none   " aria-describedby="senha-error" />
+                          <input  {...register("senha")} type="password" id="senha" name="senha" className="py-3 px-4 block w-full border-gray-200 border focus:outline-blue-600 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none   " aria-describedby="senha-error" />
                           <p className='text-red-600'>{errors?.senha?.message}</p>
 
                           <div className="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">

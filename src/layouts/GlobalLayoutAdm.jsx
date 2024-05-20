@@ -41,11 +41,11 @@ function GlobalLayoutAdm({ children }) {
                   <span className='text-white'>{` ${nomeUser ? nomeUser : "Administrador"}`}</span>
                 </a> :
                   <div className='flex gap-2'>
-                    <a class="flex-none text-xl font-semibold text-white   focus:ring- hidden sm:block" href="#" aria-label="Brand"> 
-                    O que é isso no meu r <SearchOutlined style={{ fontSize: '30px' }} color='red' className='text-white  rotate-0' />tulo?
-                    
+                    <a class="flex-none text-xl font-semibold text-white   focus:ring- hidden sm:block" href="#" aria-label="Brand">
+                      O que é isso no meu r <SearchOutlined style={{ fontSize: '30px' }} color='red' className='text-white  rotate-0' />tulo?
+
                     </a>
-                    
+
                     <p></p>
                   </div>
 
@@ -85,7 +85,7 @@ function GlobalLayoutAdm({ children }) {
               </div>
             </nav>
           </header>
-          <main  onClick={() => setShowMenu(false)} className={`flex ${ showMenu &&"bg-[#00000090]"} flex-col justify-between h-full`}>
+          <main onClick={() => setShowMenu(false)} className={`flex ${showMenu && "bg-[#00000090]"} flex-col justify-between h-full`}>
             <div class="h-full pt-12 mt-5 ">
               {children}
 
@@ -93,7 +93,7 @@ function GlobalLayoutAdm({ children }) {
 
             <footer class="mt-auto text-center py-5">
               <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-2 flex-col md:flex-row items-center justify-center">
-                <p class={` ${showMenu  ? "text-gray-50":"text-gray-500"}`}>© Oque é isso no meu rótulo?   (IFBA) Instituto Federal da Bahia</p>
+                <p class={` ${showMenu ? "text-gray-50" : "text-gray-500"}`}>© Oque é isso no meu rótulo?   (IFBA) Instituto Federal da Bahia</p>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Logotipo_IFET.svg" alt="Logo do IFBA" className='h-5 w-auto' />
               </div>
             </footer>

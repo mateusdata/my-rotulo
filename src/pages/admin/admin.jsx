@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from '../../axiosConfig';
 import Loading from '../../components/loading/loading';
 import PulseLoader from 'react-spinners/PulseLoader';
-import Dashboard from '../../components/dashboard/Dashboard';
 import RegisterProducts from '../../components/dashboard/registerProducts';
 import GlobalLayoutAdm from '../../layouts/GlobalLayoutAdm';
 

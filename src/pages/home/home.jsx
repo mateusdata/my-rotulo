@@ -15,7 +15,7 @@ function Home() {
   const [searchValue, setSearchValue] = useState('');
   const [categoria, setCategoria] = useState('1');
   const [sugestaoAlimentos, setSugestaoAlimentos] = useState([]);
-  const { darkMode, setDarkMode, nomeUser } = useContext(Contexto);
+  const { darkMode, nomeUser } = useContext(Contexto);
 
   const [erro, setErro] = useState(false);
 
@@ -23,9 +23,10 @@ function Home() {
     if (nomeUser) {
       document.documentElement.classList.remove('dark');
       localStorage.theme = 'light';
-
     }
+
   }, [darkMode, nomeUser]);
+  
 
   const getSugestao = async (value) => {
     try {
@@ -39,7 +40,8 @@ function Home() {
     }
   };
 
-  const getAlimentos = async () => {
+  const getAlimentos = async (e) => {
+    e?.preventDefault()
     if (searchValue.length > 0) {
       setAlimentos([]);
       try {
@@ -70,14 +72,16 @@ function Home() {
     }
     setOptions([]);
 
-
   }, [sugestaoAlimentos]);
+
+
 
   return (
     <GlobalLayout>
       <div className=" flex items-center justify-center md:min-h-[60vh] flex-col">
 
         <form onSubmit={getAlimentos} className="flex   w-[100%] md:w-[550px] flex-col   p-10 md:p-12  gap-4">
+
           <img onClick={() => {
             setAlimentos([]);
             setOptions([])
@@ -119,8 +123,8 @@ function Home() {
             />
 
           </ConfigProvider>
-
           <div className=' flex items-center justify-between md:justify-around mb-8'>
+
             <select
               className={`w-[120px] bg-green-600 text-white dark:bg-gray-800 border dark:active:bg-gray-600 ctive:bg-gray-50 dark:focus:bg-gray-600 dark:border-gray-600 dark:text-gray-300 py-1.5 px-1 pr-2 rounded-lg leading-tight focus:outline-none  dark:focus:border-gray-500`}
               value={categoria}
@@ -134,7 +138,7 @@ function Home() {
               <option value="3" className="dark:bg-gray-800">Saneantes</option>
             </select>
 
-            <button onClick={getAlimentos}
+            <button type='submit'
               className='w-[120px] bg-green-600 text-white dark:bg-gray-800 border
              dark:active:bg-gray-600
              ctive:bg-gray-50 dark:focus:bg-gray-600

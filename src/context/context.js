@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     if(nomeUser){
       document.documentElement.classList.remove('dark');
       localStorage.theme = 'light';
+      setDarkMode(false)
       return 
     }
     if (darkMode) {
@@ -29,7 +30,7 @@ export const AuthProvider = ({ children }) => {
       document.documentElement.classList.remove('dark');
       localStorage.theme = 'light';
     }
-  }, [darkMode]);
+  }, [darkMode, nomeUser]);
 
 
   useEffect(() => {
