@@ -4,7 +4,7 @@ import Loading from '../../components/loading/loading';
 import PulseLoader from 'react-spinners/PulseLoader';
 import Dashboard from '../../components/dashboard/Dashboard';
 import RegisterProducts from '../../components/dashboard/registerProducts';
-import GlobalLayout from '../../layouts/GlobalLayout';
+import GlobalLayoutAdm from '../../layouts/GlobalLayoutAdm';
 
 function Admin() {
   const [alimentos, setAlimentos] = useState([]);
@@ -27,7 +27,7 @@ function Admin() {
     )
   }
   return (
-    <GlobalLayout>
+    <GlobalLayoutAdm>
       <div style={{ display: "none" }}>
         <br />
         {showItens && alimentos.map((item) => (
@@ -46,7 +46,7 @@ function Admin() {
       </div>
       <RegisterProducts />
 
-    </GlobalLayout>
+    </GlobalLayoutAdm>
   );
 }
 

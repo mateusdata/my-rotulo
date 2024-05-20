@@ -2,6 +2,7 @@ import { Spin } from "antd";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HashLoader } from "react-spinners";
+import 'animate.css';
 
 export const Contexto = createContext();
 
@@ -16,6 +17,11 @@ export const AuthProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(localStorage.theme === 'dark');
 
   useEffect(() => {
+    if(nomeUser){
+      document.documentElement.classList.remove('dark');
+      localStorage.theme = 'light';
+      return 
+    }
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.theme = 'dark';

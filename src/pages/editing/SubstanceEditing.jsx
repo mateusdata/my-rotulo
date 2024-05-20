@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Table, Tag, Button, Space, Popconfirm, Modal, notification } from 'antd';
 import axios from 'axios';
-import GlobalLayout from '../../layouts/GlobalLayout';
 import Search from 'antd/es/transfer/search';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
 import { Contexto } from '../../context/context';
+import GlobalLayoutAdm from '../../layouts/GlobalLayoutAdm';
 
 const { Column } = Table;
 
@@ -93,7 +93,6 @@ const SubstanceEditing = () => {
       setCurrentData(currentData);
     }
   }, [open]);
-  const { darkMode, setDarkMode } = useContext(Contexto);
 
 
   const [api, contextHolder] = notification.useNotification();
@@ -106,7 +105,7 @@ const SubstanceEditing = () => {
 
 
   return (
-    <GlobalLayout>
+    <GlobalLayoutAdm>
       {contextHolder}
 
       <Modal open={open} onCancel={() => setOpen(!open)} footer={false} >
@@ -161,7 +160,7 @@ const SubstanceEditing = () => {
         <div className='p-1 px-28 pt-2 w-full'>
 
 
-          <div className={`border rounded-lg shadow-sm p-1 dark:bg-gray-900 `}>
+          <div className={`border rounded-lg shadow-sm p-1  `}>
             <div className='w-full sm:w-80 mb-2'>
               <Search
                 onChange={(e) => {
@@ -175,7 +174,7 @@ const SubstanceEditing = () => {
                 allowClear enterButton="Search" size="large" />
 
             </div>
-            <Table className={darkMode ? 'ant-table-dark' : ''}
+            <Table 
               dataSource={data} scroll={{ x: true }} pagination={{ pageSize: 4 }}>
               <Column title="Nome em Português" dataIndex="nome_pt" key="nome_pt" />
               <Column title="Nome em Inglês" dataIndex="nome_us" key="nome_us" />
@@ -250,7 +249,7 @@ const SubstanceEditing = () => {
       <br />
       <pre>{false && JSON.stringify(watch(), null, 2)}</pre>
 
-    </GlobalLayout>
+    </GlobalLayoutAdm>
   );
 };
 
