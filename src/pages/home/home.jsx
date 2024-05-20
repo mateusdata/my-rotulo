@@ -112,28 +112,7 @@ function Home() {
             <Button className='bg-green-500' type="primary" onClick={getAlimentos}>Pesquisar</Button>
           </div>
           <div>
-            {/*alimentos?.map((alimento) => (
-              <div key={alimento.id}>
-                <h3 className='text-lg font-bold' >{alimento.nome_pt}</h3>
-                <p className='text-gray-800 dark:text-gray-50'>{`Nome em inglês - ${alimento.nome_us}`}</p>
-                <p className='text-gray-800 mb-5'>{`Nome em alternativo - ${alimento.nome_latim}`}</p>
-                <p className='text-gray-800 mb-5'>{`Origem - ${alimento.origem}`}</p>
-                <span className='text-lg font-semibold '>Função Principal</span>
-                <p className='text-gray-800'>{alimento.funcao_principal}</p>
-                <p className='text-blue-500'>{"Categoria: " + (alimento?.categoria_id == 1 ? "Alimenticios" : alimento?.categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
-
-                <div onClick={() => {
-                  setAlimentos([]);
-                  setSearchValue("")
-                  setCategoria("1")
-                }} className='group flex w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 cursor-pointer items-center mt-5 gap-2'>
-                  <ClearOutlined className='cursor-pointer text-red-400 group-hover:text-white' />
-                  <span>Nova pesquisa</span>
-                </div>
-
-              </div>
-              ))*/}
-
+            
             {alimentos.length > 0 && (
               <div key={alimentos[0].id}>
                 <h3 className='text-lg font-bold  dark:text-gray-50 '>{alimentos[0].nome_pt}</h3>
@@ -143,16 +122,16 @@ function Home() {
                 <p className='text-gray-800  dark:text-gray-50  mb-5'>{alimentos[0].funcao_principal}</p>
                 <span className='text-lg text-gray-800 dark:text-gray-50 font-semibold'>Origem</span>
                 <p className='text-gray-800 dark:text-gray-50 mb-5'>{alimentos[0].origin}</p>
-                <div  className='flex gap-5'>
+                <div  className='flex gap-1 flex-col'>
                   <span className='text-lg text-gray-800 dark:text-gray-50 font-semibold'>Categoria</span>
-                  <p className='text-blue-50  mb-5'>{(alimentos[0].categoria_id == 1 ? "Alimentícios" : alimentos[0].categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
+                  <p className='text-gray-800 dark:text-gray-50 mb-5'>{(alimentos[0].categoria_id === 1 ? "Alimentícios" : alimentos[0].categoria_id == 2 ? "Corporais" : "Saneantes")}</p>
                 </div>
                 <div onClick={() => {
                   setAlimentos([]);
                   setOptions([])
                   setSearchValue("");
                   setCategoria("1");
-                }} className='group flex text-center sm:w-1/3 rounded-md p-1 hover:text-white hover:bg-red-500 bg-red-400 cursor-pointer items-center mt-5 gap-2'>
+                }} className='group flex text-center sm:w-1/3 rounded-md p-1 hover:text-white hover:bg-green-500 bg-green-400 cursor-pointer items-center mt-5 gap-2'>
                   <ClearOutlined className='cursor-pointer text-gray-200 group-hover:text-white' />
                   <span className='text-center text-gray-50  ' >Nova pesquisa</span>
                 </div>
