@@ -30,12 +30,12 @@ const LoginPage = () => {
         return login(watch("cpf"));
 
       }
-      setError("senha", { message: "CPF ou senha incorretos" })
+      setError("senha", { message: "Ocorreu um erro" })
 
     } catch (error) {
       setError("senha", { message: "CPF ou senha incorretos" })
+      console.log(error);
     }
-    console.log(data)
   }
 
   return (

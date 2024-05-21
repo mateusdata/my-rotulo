@@ -6,6 +6,7 @@ import GlobalLayout from '../../layouts/GlobalLayout';
 import Logo from "../../images/marca.png"
 import LogoDark from "../../images/marca-dark.png"
 import { Contexto } from '../../context/context';
+import 'animate.css';
 
 
 
@@ -149,10 +150,11 @@ function Home() {
               Pesquisar
             </button>
           </div>
+          
           <div>
 
             {alimentos.length > 0 && (
-              <div key={alimentos[0].id}>
+              <div className='' key={alimentos[0].id}>
                 <h3 className='text-lg font-bold  dark:text-gray-50 '>{alimentos[0].nome_pt}</h3>
                 <p className='text-gray-800 dark:text-gray-50'>{`Nome em inglês - ${alimentos[0].nome_us}`}</p>
                 <p className='text-gray-800 dark:text-gray-50 mb-5'>{`Nome em alternativo - ${alimentos[0].nome_latim}`}</p>

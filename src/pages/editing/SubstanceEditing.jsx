@@ -20,6 +20,7 @@ const SubstanceEditing = () => {
     DataDeAdicao: yup.string(),
     category: yup.string(),
     namePt: yup.string().required("⛔ Campo obrigatório"),
+    ref: yup.string().required("⛔ Campo obrigatório"),
     nameUs: yup.string().required("⛔ Campo obrigatório"),
     nameLatin: yup.string().required("⛔ Campo obrigatório"),
     mainFunction: yup.string().required("⛔ Campo obrigatório"),
@@ -36,7 +37,7 @@ const SubstanceEditing = () => {
       nameLatin: "",
       mainFunction: "",
       origin: "",
-      category: "",
+      ref: "",
     },
     resolver: yupResolver(schema)
   });
@@ -82,7 +83,7 @@ const SubstanceEditing = () => {
     } catch (error) {
       updatPage()
     }
-  } 
+  }
 
   const handleEdit = (record) => {
     // Aqui você pode abrir um modal ou outra forma de edição com os dados do item
@@ -111,41 +112,66 @@ const SubstanceEditing = () => {
       <Modal open={open} onCancel={() => setOpen(!open)} footer={false} >
         <form className='flex flex-col gap-2' onSubmit={handleSubmit(onSubmit)}>
           <h1 className='text-center font-semibold text-lg'>Atualização de substância</h1>
+          <label htmlFor="">Name em português</label>
           <input
             defaultValue={currentData?.nomePt}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('namePt', { required: 'Name PT is required' })}
+            {...register('namePt', { required: 'Name PT é' })}
             placeholder="Name em português"
           />
           {errors.namePt && <span className="text-red-500">{errors.namePt.message}</span>}
+
+          <label htmlFor="">Nome em inglês</label>
+
           <input
             defaultValue={currentData?.nomeUs}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('nameUs', { required: 'Name US is required' })}
-            placeholder="Name em inglês"
+            {...register('nameUs', { required: 'Name US é' })}
+            placeholder="Nome em inglês"
           />
           {errors.nameUs && <span className="text-red-500">{errors.nameUs.message}</span>}
+
+          <label htmlFor="">Nome em latim</label>
+
           <input
             defaultValue={currentData?.nomeLatin}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('nameLatin', { required: 'Name Latin is required' })}
+            {...register('nameLatin', { required: 'Name Latin é' })}
             placeholder="Nome em latim"
           />
           {errors.nameLatin && <span className="text-red-500">{errors.nameLatin.message}</span>}
-          <textarea
-            defaultValue={currentData?.mainFunction}
-            className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('mainFunction', { required: 'função principal is required' })}
-            placeholder="função principal"
-          />
-          {errors.mainFunction && <span className="text-red-500">{errors.mainFunction.message}</span>}
-          <textarea
+
+          <label htmlFor="">Origem</label>
+
+          <input
             defaultValue={currentData?.origin}
             className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
-            {...register('origin', { required: 'Origin is required' })}
+            {...register('origin', { required: 'Origin é' })}
             placeholder="Origin"
           />
           {errors.origin && <span className="text-red-500">{errors.origin.message}</span>}
+          
+          <label htmlFor="">Referência</label>
+
+          <input
+            defaultValue={currentData?.ref}
+            className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
+            {...register('ref', { required: 'Referência é' })}
+            placeholder="Referência"
+          />
+          {errors.ref && <span className="text-red-500">{errors.ref.message}</span>}
+
+
+          <label htmlFor="">Função principal</label>
+
+          <textarea
+            defaultValue={currentData?.mainFunction}
+            className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500'
+            {...register('mainFunction', { required: 'mainFunction é' })}
+            placeholder="Função principal"
+          />
+          {errors.mainFunction && <span className="text-red-500">{errors.origin.message}</span>}
+
 
           <button className='border focus:border-blue-500 hover:border-blue-500 rounded-md p-2 focus:outline-blue-500 bg-green-600 text-white' type="submit">Atualizar</button>
         </form>
@@ -174,11 +200,13 @@ const SubstanceEditing = () => {
                 allowClear enterButton="Search" size="large" />
 
             </div>
-            <Table 
+            <Table
               dataSource={data} scroll={{ x: true }} pagination={{ pageSize: 4 }}>
               <Column title="Nome em Português" dataIndex="nome_pt" key="nome_pt" />
               <Column title="Nome em Inglês" dataIndex="nome_us" key="nome_us" />
               <Column title="Nome em Latim" dataIndex="nome_latim" key="nome_latim" />
+              <Column title="Referência" dataIndex="ref" key="ref" />
+
               <Column
                 title="Categoria"
                 dataIndex="categoria_id"
@@ -235,6 +263,8 @@ const SubstanceEditing = () => {
                       setValue('mainFunction', record.funcao_principal);
                       setValue('origin', record.origin);
                       setValue('category', record.categoria_id);
+                      setValue('ref', record.ref);
+
 
                     }}>Editar</Button>
                   </Space>

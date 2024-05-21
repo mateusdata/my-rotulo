@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import axios from '../../axiosConfig';
 import { Contexto } from "../../context/context";
 import { useForm, Controller } from 'react-hook-form';
-import { Input, Button, Select, message, notification } from 'antd';
+import { Input, Button, Select, notification } from 'antd';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -12,15 +12,17 @@ const { Option } = Select;
 const schema = yup.object().shape({
   namePt: yup.string().required('Obrigatório'),
   nameUs: yup.string().required('Obrigatório'),
+  ref: yup.string().required('Obrigatório'),
   nameLatin: yup.string().required('Obrigatório'),
   origin: yup.string().required('Obrigatório'),
   mainFunction: yup.string().required('Obrigatório'),
-  category: yup.number().required('Obrigatório').typeError('Selecione uma categoria')
+  category: yup.number().required('Obrigatório').typeError('Selecione uma categoria'),
+  
 });
 
 
 export default function RegisterProducts() {
-  const data = { namePt: "", nameUs: "", nameLatin: "", origin: "", mainFunction: "", category: "Selecione" }
+  const data = { namePt: "", nameUs: "", nameLatin: "", origin: "", mainFunction: "", category: "Selecione", ref:"" }
 
   const { control, reset, handleSubmit, setError, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
@@ -122,7 +124,18 @@ export default function RegisterProducts() {
               />
               <p className='text-red-600 text-left text-sm'>{errors?.origin?.message}</p>
             </div>
+            <div className="w-full">
+              <Controller
+                name="ref"
+                control={control}
+                render={({ field }) => (
+                  <Input {...field} placeholder="Referência" />
+                )}
+              />
+              <p className='text-red-600 text-left text-sm'>{errors?.ref?.message}</p>
+            </div>
           </div>
+          
 
           <div className="w-full">
             <Controller
