@@ -14,7 +14,7 @@ import 'animate.css';
 function Home() {
   const [alimentos, setAlimentos] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [categoria, setCategoria] = useState('1');
+  const [categoria, setCategoria] = useState(null);
   const [sugestaoAlimentos, setSugestaoAlimentos] = useState([]);
   const { darkMode, nomeUser } = useContext(Contexto);
 
@@ -27,7 +27,7 @@ function Home() {
     }
 
   }, [darkMode, nomeUser]);
-  
+
 
   const getSugestao = async (value) => {
     try {
@@ -43,6 +43,7 @@ function Home() {
 
   const getAlimentos = async (e) => {
     e?.preventDefault()
+    setAlimentos([])
     if (searchValue.length > 0) {
       setAlimentos([]);
       try {
@@ -87,7 +88,7 @@ function Home() {
             setAlimentos([]);
             setOptions([])
             setSearchValue("");
-            setCategoria("1");
+            setCategoria(null);
           }} src={darkMode ? LogoDark : Logo} alt="" className='object-contain cursor-pointer hover:object-scale-down md:max-h-24 max-h-16' />
           <ConfigProvider
             theme={{
@@ -112,6 +113,7 @@ function Home() {
             }}
           >
             <AutoComplete
+              disabled={!categoria}
               onSelect={() => { }}
               value={searchValue}
               options={options}
@@ -127,6 +129,7 @@ function Home() {
           <div className=' flex items-center justify-between md:justify-around mb-8'>
 
             <select
+              defaultValue={"Selecione"}
               className={`w-[120px] bg-green-600 text-white dark:bg-gray-800 border dark:active:bg-gray-600 ctive:bg-gray-50 dark:focus:bg-gray-600 dark:border-gray-600 dark:text-gray-300 py-1.5 px-1 pr-2 rounded-lg leading-tight focus:outline-none  dark:focus:border-gray-500`}
               value={categoria}
               onChange={(e) => {
@@ -134,10 +137,13 @@ function Home() {
                 setCategoria(e.target.value);
               }}
             >
+              <option value="" className="dark:bg-gray-800">Selecione</option>
               <option value="1" className="dark:bg-gray-800">Alimentícios</option>
               <option value="2" className="dark:bg-gray-800">Corporais</option>
               <option value="3" className="dark:bg-gray-800">Saneantes</option>
             </select>
+
+
 
             <button type='submit'
               className='w-[120px] bg-green-600 text-white dark:bg-gray-800 border
@@ -150,7 +156,7 @@ function Home() {
               Pesquisar
             </button>
           </div>
-          
+
           <div>
 
             {alimentos.length > 0 && (
