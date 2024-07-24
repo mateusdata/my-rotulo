@@ -121,7 +121,7 @@ function Home() {
                 getSugestao(e)
                 setSearchValue(e)
               }}
-              placeholder="Pesquisar substâncias"
+              placeholder={`${!categoria? "Selecione uma categoria": "Pesquisar substâncias"}`}
               className='h-10 w-full rounded-2xl hover:border-none hover:outline-none'
             />
 
